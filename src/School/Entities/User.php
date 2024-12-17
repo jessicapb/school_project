@@ -17,7 +17,7 @@ abstract class User{
     protected ?\DateTime $createdAt=null; //emagatzema la bd
     protected ?\DateTime $updatedAt=null; // emmagatzema la bd
     
-    public function __construct($name, $surname, $password, $phonenumber, $email, $ident) {
+    public function __construct($name, $surname, $password, $phonenumber, $email, $ident, $createdAt, $updatedAt) {
         $message = "";
         $error = 0;
         

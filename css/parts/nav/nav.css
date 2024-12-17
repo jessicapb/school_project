@@ -1,0 +1,126 @@
+/* Fonts Google importades*/
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Playwrite+HR+Lijeva+Guides&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Playwrite+HR+Lijeva+Guides&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Colors */
+:root{
+    --colortext: black;
+    --shadowdesplegable: rgba(0,0,0,0.4);
+    --colortexthover: white;
+    --bgtexthover: #00A4BD;
+    --bgbotó: #7fb3d5;
+    --colorlínia: #d5dbdb;
+}
+
+/* Global */
+*{
+    margin: 0rem; /* 0px */
+    padding: 0rem; /* 0px */
+}
+
+/* Títol */
+.titol__nav{
+    font-family: "Figtree", sans-serif;
+    margin: 0.938rem 0.625rem 0.625rem 1.25rem; /* 15px 10px 10px 20px*/
+    font-size: 2.188rem; /* 35px */
+    color: var(--colortext);
+}
+
+/* Navegació (capsa global) */
+.boxdown{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.625rem 0.625rem 0.625rem 1.25rem; /* 10px 10px 10px 20px*/ /* top right bottom left */
+}
+
+/* Navegació text */
+.boxinfo{
+    display: flex;
+}
+
+#boxinfo__text{
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.063rem; /* 17px */
+    margin-right: 0.625rem; /* 10px */
+    color: var(--colortext);
+    text-decoration: none;
+}
+
+#boxinfo__text:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#boxinfo__text--diff{
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.063rem; /* 17px */
+    color: var(--colortext);
+}
+
+#boxinfo__text--diff:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Desplegable */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 12.5rem; /* 200px */
+    overflow: auto;
+    box-shadow: 0rem 0.625rem 0.625rem 0rem var(--shadowdesplegable); /* 0px 10px 10px 0px */
+    background-color: var(--colortexthover);
+    /* Text */
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.063rem; /* 17px */
+    padding: 0.625rem; /* 10px */
+    color: var(--colortext);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    color: var(--colortext);
+    padding: 0.313rem; /* 5px */
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    color: var(--colortexthover);
+    background-color: var(--bgtexthover);
+}
+
+/* Botó */
+#boxbt__format{
+    /* Botó */
+    border-radius: 0.438rem; /* 7px */
+    padding: 0.625rem; /* 10px */
+    border: none;
+    background-color: var(--bgbotó);
+    margin-right: 0.625rem; /* 10px */
+    /* Text */
+    font-size: 1.125rem; /* 18px */
+    font-family: "Barlow", sans-serif;
+    font-weight: 500; 
+    color: var(--colortext);
+}
+
+#boxbt__format:hover{
+    cursor: pointer;
+}
+
+/* Línia */
+.linia__nav{
+    border:0.063rem solid var(--colorlínia); /* 1px */
+}

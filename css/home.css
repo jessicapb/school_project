@@ -1,0 +1,59 @@
+/* https://fonts.google.com/selection/embed*/
+
+/* Global */
+*{
+    margin: 0rem; /* 0px */
+    padding: 0rem; /* 0px */
+}
+
+/* Localització de la pàgina*/
+#localitzacio__enlac{
+    text-decoration: none;
+}
+
+#localitzacio__text{
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.188rem; /* 19px */
+    color: var(--colortext);
+    margin: 0.938rem 0rem 0.625rem 1.25rem; /* 15px 10px 10px 20px*/ /* top right bottom left */
+    font-weight: bold;
+}
+
+/* Capsa general */
+.boxgeneral{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1.875rem; /* 30px */
+}
+
+/* Vora capsa */
+.capsa{
+    border: 0.125rem solid black; /* 2px */
+    border-radius: 0.438rem; /* 7px */
+    padding: 0.938rem; /* 15px */
+}
+
+/* Text */
+#capsa__titol{
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 23px;
+}
+
+/* Botó */
+#capsa__bt{
+    /* Botó */
+    background-color: #7fb3d5;
+    border: none;
+    border-radius: 0.438rem; /* 7px */
+    padding: 0.625rem; /* 10px */
+    margin: 0.625rem 0.625rem 0rem 0rem; /* 10px 10px 0px 0px */ /* top right bottom left */
+    /* Text */
+    font-size: 1.125rem; /* 18px */
+    font-family: "Barlow", sans-serif;
+    font-weight: 500; 
+}
+
+#capsa__bt:hover{
+    cursor: pointer;
+}
