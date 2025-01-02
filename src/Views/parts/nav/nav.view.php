@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="css/parts/nav/nav.css">
+    <title>Navbar</title>
 </head>
 
 <body>
@@ -16,12 +17,13 @@
                         <p id="boxinfo__text--diff">Afegir</p>
                         <div class="dropdown-content">
                             <a href="/indexalumne">Alumne</a>
-                            <a href="">Asignatura</a>
+                            <a href="">Assignatura</a>
                             <a href="">Curs</a>
                             <a href="">Departament</a>
-                            <a href="">Examen</a>
+                            <a href="/indexexamen">Examen</a>
+                            <a href="">Graus</a>
                             <a href="">Inscripció</a>
-                            <a href="">Professor</a>
+                            <a href="/indexprofessor">Professor</a>
                         </div>
                     </div> 
                 </div>
@@ -30,7 +32,7 @@
                     <button id="boxbt__format">Contacte</button>
                 </div>
             </nav>
-    <hr class="linia__nav">
+        <hr class="linia__nav">
     </header>
 </body>
 </html>

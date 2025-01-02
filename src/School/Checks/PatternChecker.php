@@ -23,37 +23,29 @@ class PatternChecker {
         }
     }
 
-    public static function checkDate(string $date): DateTime {
-        //la fecha debe ser dd/mm/yyyy
-        $patron = "~^(0[1-9]|[12][0-9]|3[01])([/-])(0[1-9]|1[012])([/-])(\d{4})$~";
-        //Comprobar que el patron coincide con la fecha pasada por el usuario
-        if (!preg_match($patron, $date)) {
-            throw new DateException("La fecha proporcionada no es correcta, indique ambos dígitos del día y mes, separados por / o -, y los 4 dígitos del año.");
+    public static function checkDNI(string $dni):bool{
+        $RE = '/^\d{8}[A-Z]{1}$/'; 
+        if (preg_match($RE, $dni)) {
+            return true;
+        } else {
+            return false;
         }
-        //Pasar a enteros el string de la fecha
-        $dia = intval(substr($date, 0, 2));
-        $mes = intval(substr($date, 3, 2));
-        $ano = intval(substr($date, 6, 4));
-        //Preguntar si es un año bisiesto
-        $esBisiesto = ($ano % 4 == 0 && ($ano % 100 != 0 || $ano % 400 == 0));
-        if ($mes == 2 && ($dia > 29 || ($dia == 29 &&!$esBisiesto))) {
-            throw new DateException("En el mes de febrero no pueden haber más de 29 días en años bisiestos.");
-        }
-        //Que los días y los meses no superen sus máximos
-        $diasPorMes = [0, 31, ($esBisiesto ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-        if ($dia < 1 || $dia > $diasPorMes[$mes]) {
-            throw new DateException("Fecha incorrecta. Por favor, introduzca un día válido para el mes seleccionado.");
-        }
-        //reemplazar los separadores que ponga por los que yo quiero
-        $newdate = str_replace('-', '/', $date);
-        //Crear nueva fecha con la fecha correcta
-        $fechaCorrecta = DateTime::createFromFormat('d/m/Y', $newdate);
-        if (!$fechaCorrecta) {
-            throw new DateException("La fecha proporcionada no es válida.");
-        }
+    }
 
+    public static function checkDate(string $date): \DateTime {
+        $patron = "~^\d{4}-\d{2}-\d{2}$~"; 
+        
+        if (!preg_match($patron, $date)) {
+            throw new DateException("La data proporcionada no és correcta. El format ha de ser YYYY-MM-DD.");
+        }
+    
+        $fechaCorrecta = \DateTime::createFromFormat('Y-m-d', $date);
+        if (!$fechaCorrecta) {
+            throw new DateException("La data proporcionada no és vàlida.");
+        }
         return $fechaCorrecta;
     }
+    
 
     public static function getErrorMessage(int $e): string {
         switch ($e) {
@@ -61,6 +53,7 @@ class PatternChecker {
             case -5: return "Bad pattern Email";
             case -6: return "Bad pattern Date";
             case -7: return "Bad pattern Phone";
+            case -8: return "Bad pattern DNI";
         }
     }
 }

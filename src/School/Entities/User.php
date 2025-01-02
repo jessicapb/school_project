@@ -8,16 +8,17 @@ use App\School\Checks\Check;
 use App\School\Checks\PatternChecker;
 
 abstract class User{
-    protected $name;
-    protected $surname;
-    protected $password;
-    protected $phonenumber;
-    protected $email;
-    protected $ident;
-    protected ?\DateTime $createdAt=null; //emagatzema la bd
-    protected ?\DateTime $updatedAt=null; // emmagatzema la bd
+    protected string $name;
+    protected string $surname;
+    protected string $password;
+    protected string $phonenumber;
+    protected string $email;
+    protected string $ident;
+    protected string $course;
+    protected string $subject;
     
-    public function __construct($name, $surname, $password, $phonenumber, $email, $ident, $createdAt, $updatedAt) {
+    public function __construct(string $name, string $surname, string $password, string $phonenumber, string $email, string $ident,
+                                string $course, string $subject) {
         $message = "";
         $error = 0;
         
@@ -32,11 +33,11 @@ abstract class User{
         if($error = $this->setPassword($password) !=0){
             $message .="Bad password, ";
         }
-       
+
         if($error = $this->setPhonenumber($phonenumber) !=0){
             $message .= "Bad phonenumber";
         }
-       
+
         if($error = $this->setEmail($email) !=0){
             $message .= "Bad email";
         }
@@ -44,17 +45,25 @@ abstract class User{
         if($error = $this->setIdent($ident) !=0){
             $message .= "Bad ident";
         }
-          
+        
+        if($error = $this->setCourse($course) !=0){
+            $message .= "Bad course";
+        }
+        
+        if($error = $this->setSubject($subject) !=0){
+            $message .= "Bad subject";
+        }
+        
         if (strlen($message) > 0) {
-            throw new BuildExceptions("Not posible create the object: " . $message);
+            throw new BuildExceptions("No es pot crear " . $message);
         }
     }
     
-    public function getName() {
+    public function getName():string {
         return $this->name;
     }
     
-    public function setName($name): int {
+    public function setName(string $name) {
         if(Check::isNull($name) == true){
             return -1;
         }
@@ -66,11 +75,11 @@ abstract class User{
         return 0;
     }
 
-    public function getSurname() {
+    public function getSurname():string {
         return $this->surname;
     }
     
-    public function setSurname($surname): int {
+    public function setSurname(string $surname):int {
         if(Check::isNull($surname) == true){
             return -1;
         }
@@ -82,11 +91,11 @@ abstract class User{
         return 0;
     }
     
-    public function getPassword() {
+    public function getPassword():string {
         return $this->password;
     }
 
-    public function setPassword($password): int {
+    public function setPassword(string $password):int {
         if(Check::isNull($password) == true){
             return -1;
         }
@@ -94,19 +103,15 @@ abstract class User{
         if(Check::minLenght($password, 7) !=0){
             return -2;
         }
-        
-        if(Check::isNegative($password, -1) !=0){
-            return -3;
-        }
         $this->password = $password;
         return 0;
     }
     
-    public function getPhonenumber() {
+    public function getPhonenumber():string {
         return $this->phonenumber;
     }
 
-    public function setPhonenumber($phonenumber): int {
+    public function setPhonenumber(string $phonenumber): int {
         if(Check::isNull($phonenumber) == true){
             return -1;
         }
@@ -122,11 +127,11 @@ abstract class User{
         return 0;
     }
     
-    public function getEmail() {
+    public function getEmail():string {
         return $this->email;
     }
 
-    public function setEmail($email): int {
+    public function setEmail(string $email): int {
         if(Check::isNull($email) == true){
             return -1;
         }
@@ -142,23 +147,51 @@ abstract class User{
         return 0;
     }
 
-    public function getIdent() {
+    public function getIdent():string {
         return $this->ident;
     }
 
-    public function setIdent($ident): int {
+    public function setIdent(string $ident): int {
         if(Check::isNull($ident) == true){
             return -1;
         }
         
-        if(Check::minLenght($ident, 5) !=0 ){
+        if(Check::minLenght($ident, 10) !=0 ){
             return -2;
         }
-        
-        if(Check::isNegative($ident, -1) !=0){
-            return -3;
-        }
         $this->ident = $ident;
+        return 0;
+    }
+    
+    public function getCourse(): string {
+        return $this->course;
+    }
+    
+    public function setCourse(string $course): int {
+        if(Check::isNull($course) == true){
+            return -1;
+        }
+        
+        if(Check::minLenght($course, 4) !=0){
+            return -2;
+        }
+        $this->course = $course;
+        return 0;
+    }
+    
+    public function getSubject(): string {
+        return $this->subject;
+    }
+
+    public function setSubject(string $subject): int {
+        if(Check::isNull($subject) == true){
+            return -1;
+        }
+        
+        if(Check::minLenght($subject, 4) !=0){
+            return -2;
+        }
+        $this->subject = $subject;
         return 0;
     }
 }

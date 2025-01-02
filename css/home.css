@@ -1,4 +1,13 @@
-/* https://fonts.google.com/selection/embed*/
+/* Fonts Google importades */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Playwrite+HR+Lijeva+Guides&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Colors */
+:root{
+    --colortext: black;
+    --bgbotó: #7fb3d5;
+}
 
 /* Global */
 *{
@@ -20,30 +29,48 @@
 }
 
 /* Capsa general */
-.boxgeneral{
-    display: flex;
-    flex-direction: row;
+.general{
+    display: flex; 
     justify-content: center;
     margin-top: 1.875rem; /* 30px */
 }
 
 /* Vora capsa */
 .capsa{
-    border: 0.125rem solid black; /* 2px */
+    border: 0.125rem solid var(--colortext); /* 2px */
     border-radius: 0.438rem; /* 7px */
     padding: 0.938rem; /* 15px */
+    margin: 0rem 0.938rem 0.938rem 0rem; /* 0px 15px 15px 0px */
+}
+
+.capsa__petitat{
+    border: 0.125rem solid var(--colortext); /* 2px */
+    border-radius: 0.438rem; /* 7px */
+    padding: 0.938rem; /* 15px */
+    margin: 0rem 0.938rem 0.938rem 0rem; /* 0px 15px 15px 0px */
 }
 
 /* Text */
 #capsa__titol{
-    font-family: "Chakra Petch", sans-serif;
-    font-size: 23px;
+    font-family: "Inter", serif;
+    font-size: 1.313rem; /* 21px */
+    font-weight: 500;
+    margin-bottom: 0.625rem; /* 10px */
+    color: var(--colortext);
+}
+
+#capsa__desc{
+    font-family: "Spline Sans", serif;
+    font-size: 1rem; /* 16px */
+    font-weight: 400;
+    margin-bottom: 0.625rem; /* 10px */
+    color: var(--colortext);
 }
 
 /* Botó */
 #capsa__bt{
     /* Botó */
-    background-color: #7fb3d5;
+    background-color: var(--bgbotó);
     border: none;
     border-radius: 0.438rem; /* 7px */
     padding: 0.625rem; /* 10px */
@@ -52,6 +79,7 @@
     font-size: 1.125rem; /* 18px */
     font-family: "Barlow", sans-serif;
     font-weight: 500; 
+    color: var(--colortext);
 }
 
 #capsa__bt:hover{

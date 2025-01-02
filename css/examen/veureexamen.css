@@ -1,0 +1,128 @@
+/* Fonts Google importades */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Playwrite+HR+Lijeva+Guides&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Colors */
+:root{
+    --bgcalendari: white;
+    --colorfletxa: black;
+    --shadowbox: rgba(0, 0, 0, 0.1);
+}
+
+/* Global */
+*{
+    margin: 0rem; /* 0px */
+    padding: 0rem; /* 0px */
+}
+
+/* Localització de la pàgina*/
+.localitzacio{
+    display: flex;
+    align-items: center;
+    margin-left: 1.25rem; /* 20px */
+}
+
+#localitzacio__img{
+    margin: 0.313rem 0.313rem 0rem 0.313rem; /* 5px 5px 0px 5px */ /* top right bottom left */
+    width:1.5%;
+    height: 1.5%;
+}
+
+#localitzacio__enlac{
+    text-decoration: none;
+}
+
+#localitzacio__text{
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.188rem; /* 19px */
+    color: var(--colorfletxa);
+    margin: 0.938rem 0rem 0.625rem 0rem; /* 15px 10px 10px 20px*/ /* top right bottom left */
+}
+
+#localitzacio__text--ubi{
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.188rem; /* 19px */
+    color: var(--colorfletxa);
+    margin: 0.938rem 0rem 0.625rem 0rem; /* 15px 10px 10px 20px*/ /* top right bottom left */
+    font-weight: bold;
+}
+
+/* Centrar capsa */
+.general {
+    height: 100%;
+    margin: 0rem;
+    display: flex;
+    justify-content: center;  
+    align-items: center;      
+    font-family: "Nunito Sans", sans-serif;
+}
+
+/* Capsa calendari*/
+.boxcalendari {
+    width: 100%;         
+    max-width: 56.25rem; /* 900px */
+    padding: 1.25rem; /* 20px */        
+    background-color: var(--bgcalendari);    
+    border-radius: 1.25rem; /* 20px */  
+    box-shadow: 0rem 0.625rem 1.25rem var(--shadowbox); /* 10px 20px */
+    overflow: hidden;    
+}
+
+/* FullCalendar */
+.fc-toolbar {
+    display: flex;
+    justify-content: space-between; 
+    position: relative; 
+}
+
+.fc-title{
+    font-size: 0.938rem; /* 15px */
+    font-family: "Nunito Sans", sans-serif;
+    color: var(--bgcalendari);
+}
+
+.fc-toolbar h2 {
+    font-size: 1.75rem; /* 28px */       
+    color: var(--colortext);         
+    font-weight: 500;
+    text-transform: capitalize; /* primera lletra en majúscula */
+    margin: 0rem;          
+    position: absolute;      
+    left: 0;                 
+}
+
+.fc-toolbar > .fc-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;               
+}
+
+.fc-toolbar > .fc-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+}
+
+/* Botons fullcalendar */
+.fc-button-group {
+    display: flex;
+    gap: 0.625rem; /* 10px */       
+}
+
+.fc-prev-button, 
+.fc-next-button {
+    background-color: transparent;
+    color: var(--colorfletxa);         
+    border: none;      
+    border-radius: 5px; /* 5px */
+    padding: 0.625rem; /* 10px */        
+    font-size: 1rem; /* 16px */       
+    cursor: pointer;          
+}
+
+
+.fc-prev-button:hover, 
+.fc-next-button:hover {
+    background-color: var(--shadowbox); 
+    color: var(--colorfletxa);          
+}

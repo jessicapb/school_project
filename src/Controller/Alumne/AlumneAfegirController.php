@@ -4,7 +4,7 @@ namespace App\Controller\Alumne;
 
 class AlumneAfegirController{
     function indexalumne(){
-        echo view('alumne');
+        echo view('afegiralumnes');
         //view ('users.index')
     }
 }

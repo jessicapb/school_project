@@ -1,0 +1,29 @@
+/* Fonts Google importades*/
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Playwrite+HR+Lijeva+Guides&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Colors */
+:root{
+    --colortext: black;
+    --colorlínia: #d5dbdb;
+}
+
+/* Global */
+*{
+    margin: 0rem; /* 0px */
+    padding: 0rem; /* 0px */
+}
+
+/* Línia */
+#linia{
+    border:0.063rem solid var(--colorlínia); /* 1px */
+    margin-top: 0.625rem; /* 10px */
+}
+
+/* Dades */
+#text{
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.125rem; /* 18px */
+    color: var(--colortext);
+    margin: 0.938rem; /* 15px */
+    text-align: center;
+}

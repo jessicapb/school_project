@@ -8,7 +8,6 @@
     --colortext: black;
     --shadowdesplegable: rgba(0,0,0,0.4);
     --colortexthover: white;
-    --bgtexthover: #00A4BD;
     --bgbotó: #7fb3d5;
     --colorlínia: #d5dbdb;
 }
@@ -43,7 +42,7 @@
 
 #boxinfo__text{
     font-family: "Nunito Sans", sans-serif;
-    font-size: 1.063rem; /* 17px */
+    font-size: 1.125rem; /* 18px */
     margin-right: 0.625rem; /* 10px */
     color: var(--colortext);
     text-decoration: none;
@@ -97,8 +96,8 @@
 }
 
 .dropdown-content a:hover {
-    color: var(--colortexthover);
-    background-color: var(--bgtexthover);
+    color: var(--colortext);
+    font-weight: bold;
 }
 
 /* Botó */
