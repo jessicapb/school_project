@@ -7,9 +7,9 @@ class Check {
     public static function isNull($s): bool {
         return $s == null ? true : false;
         /* if ($s == null) {
-          return true;
-          } else {
-          return false;
+            return true;
+        } else {
+            return false;
           } */
     }
     

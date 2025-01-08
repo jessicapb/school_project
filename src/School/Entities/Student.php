@@ -10,7 +10,7 @@ use App\School\Entities\User;
 
 class Student extends User{
     protected string $dni;
-    protected \DateTime $enrollment;
+    protected string $enrollment;
     
     public function __construct(string $name, string $surname, string $password, string $phonenumber, string $email, int $ident,
                                 string $course, string $subject, string $dni, string $enrollment) {
@@ -31,11 +31,12 @@ class Student extends User{
             $message .= "Bad DNI";
         }
         ;
-
+        
         if (strlen($message) > 0) {
             throw new BuildExceptions("No es pot crear " . $message);
         }
     }
+
     public function getDni(): string {
         return $this->dni;
     }
@@ -45,7 +46,7 @@ class Student extends User{
             return -1;
         }
         
-        if(Check::minLenght($dni, 9) !=0){
+        if(Check::minLenght($dni, 3) !=0){
             return -2;
         }
         
@@ -57,15 +58,22 @@ class Student extends User{
     }
     
     public function getEnrollment():string {
-        return $this->enrollment->format('Y-m-d');
+        return $this->enrollment;
     }
     
     public function setEnrollment(string $enrollment): int {
-        try{
-            $this->enrollment = PatternChecker::checkDate($enrollment);
-        }catch (DateException){
-            return -6; 
+        if(Check::isNull($enrollment)){
+            return -1;
         }
+        
+        if(Check::minLenght($enrollment, 1)){
+            return -2;
+        }
+        
+        if(PatternChecker::checkYear($enrollment) == false){
+            return -9;
+        }
+        $this->enrollment = $enrollment;
         return 0;
     }
 }

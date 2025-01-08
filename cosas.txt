@@ -1,0 +1,15 @@
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $courseName = $_POST['course_name'];
+    $courseGrau = $_POST['grau'];  
+    $subjectNames = $_POST['subjects']; 
+    $course = new \App\School\Entities\Course($courseName, $courseGrau);
+
+    foreach ($subjectNames as $subjectName) {
+        $subject = new \App\School\Entities\Subject($subjectName); 
+        $course->addSubject($subject); 
+    }
+    foreach ($course->getSubjects() as $subject) {
+        echo $subject->name . "<br>";
+    }
+}

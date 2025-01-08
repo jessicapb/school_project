@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +45,11 @@ session_start();
 
                 <!-- Contrasenya -->
                 <label id="uniodades__label" for="">Contrasenya</label>
-                <input id="uniodades__input" type="text" placeholder="escriu la contrasenya." name="password" required>
+                <div>
+                    <input class="uniodades__input" id="showpassword" type="password" placeholder="escriu la contrasenya." name="password" required>
+                    <svg id=clickme width=28 height=25 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M569.354 231.631C512.97 135.949 407.81 72 288 72 168.14 72 63.004 135.994 6.646 231.631a47.999 47.999 0 0 0 0 48.739C63.031 376.051 168.19 440 288 440c119.86 0 224.996-63.994 281.354-159.631a47.997 47.997 0 0 0 0-48.738zM288 392c-102.556 0-192.091-54.701-240-136 44.157-74.933 123.677-127.27 216.162-135.007C273.958 131.078 280 144.83 280 160c0 30.928-25.072 56-56 56s-56-25.072-56-56l.001-.042C157.794 179.043 152 200.844 152 224c0 75.111 60.889 136 136 136s136-60.889 136-136c0-31.031-10.4-59.629-27.895-82.515C451.704 164.638 498.009 205.106 528 256c-47.908 81.299-137.444 136-240 136z"/></svg>
+                </div>
+
                 <p class="error-message" id="error-password"></p>
 
                 <!-- Número de telèfon -->
@@ -78,7 +79,7 @@ session_start();
 
                 <!-- Any d'inscripció -->
                 <label id="uniodades__label" for="">Any d'inscripció</label>
-                <input id="uniodades__input" type="date"  name="enrollment" required>
+                <input id="uniodades__input" type="number"  placeholder="escriu l'any d'inscripció." name="enrollment" required>
                 <p class="error-message" id="error-enrollment"></p>
 
                 <!-- Botó afegir -->
@@ -97,17 +98,27 @@ session_start();
     <?php include 'parts/footer/footer.view.php'?>
     <script>
         <?php 
-        session_start();
-        if (isset($_SESSION['error'])): 
+        session_start(); 
+        if (isset($_SESSION['error'])) { 
         ?>
-        const serverError = <?= json_encode($_SESSION['error']); ?>;
-        <?php unset($_SESSION['error']); ?>
-        console.log("Error del servidor: ", serverError); 
-        <?php else: ?>
-        const serverError = null;
-        <?php endif; ?>
+            const serverError = <?= json_encode($_SESSION['error']); ?>;
+            <?php unset($_SESSION['error']);?>
+        <?php
+        } else {
+        ?>
+            const serverError = null;
+        <?php
+        }
+        ?>
     </script>
 
+    <!-- Carregar el Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Ensenya la contrasenya -->
+    <script src="javascript/alumne/mostrarcontrasenya.js"></script>
+
+    <!-- Fitxers dels errors -->
     <script src="javascript/alumne/error-alumne.js"></script>
 </body>
 </html>

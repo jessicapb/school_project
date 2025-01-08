@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/parts/nav/nav.css">
     <title>Navbar</title>
 </head>
@@ -12,16 +13,15 @@
                 <div class="boxinfo">
                     <a href="/index" id="boxinfo__text">Inici</a>
                     <p id="boxinfo__text">Nosaltres</p>
-                    <p id="boxinfo__text">Notes</p>
                     <div class="dropdown">
                         <p id="boxinfo__text--diff">Afegir</p>
                         <div class="dropdown-content">
                             <a href="/indexalumne">Alumne</a>
-                            <a href="">Assignatura</a>
-                            <a href="">Curs</a>
-                            <a href="">Departament</a>
+                            <a href="/indexassignatura">Assignatura</a>
+                            <a href="/indexcurs">Curs</a>
+                            <a href="/indexdepartament">Departament</a>
                             <a href="/indexexamen">Examen</a>
-                            <a href="">Graus</a>
+                            <a href="/indexgraus">Graus</a>
                             <a href="">Inscripció</a>
                             <a href="/indexprofessor">Professor</a>
                         </div>

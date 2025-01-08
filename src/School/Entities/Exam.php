@@ -57,7 +57,7 @@ class Exam{
             return -1;
         }
         
-        if(Check::minLenght($descripcio,8) !=0){
+        if(Check::minLenght($descripcio,2) !=0){
             return -2;
         }
         $this->descripcio = $descripcio;

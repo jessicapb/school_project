@@ -1,0 +1,84 @@
+/* Fonts Google importades */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Playwrite+HR+Lijeva+Guides&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Colors */
+:root{
+    --colortext: black;
+}
+
+/* Global */
+*{
+    margin: 0rem; /* 0px */
+    padding: 0rem; /* 0px */
+}
+
+/* Localització de la pàgina*/
+.localitzacio{
+    display: flex;
+    align-items: center;
+    margin-left: 1.25rem; /* 20px */
+}
+
+#localitzacio__img{
+    margin: 0.313rem 0.313rem 0rem 0.313rem; /* 5px 5px 0px 5px */ /* top right bottom left */
+    width:1.5%;
+    height: 1.5%;
+}
+
+#localitzacio__enlac{
+    text-decoration: none;
+}
+
+#localitzacio__text{
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.188rem; /* 19px */
+    color: var(--colortext);
+    margin: 0.938rem 0rem 0.625rem 0rem; /* 15px 10px 10px 0px*/ /* top right bottom left */
+}
+
+#localitzacio__text--ubi{
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.188rem; /* 19px */
+    color: var(--colortext);
+    margin: 0.938rem 0rem 0.625rem 0rem; /* 15px 10px 10px 0px*/ /* top right bottom left */
+    font-weight: bold;
+}
+
+/* Capsa */
+#box{
+    display: flex;
+    justify-content: center;
+}
+
+/* Vora capsa */
+#capsa{
+    border: 0.125rem solid var(--colortext); /* 2px */
+    border-radius: 0.438rem; /* 7px */
+    padding: 0.938rem; /* 15px */
+    margin-bottom: 0.938rem; /* 15px */
+    width: 12%;
+}
+
+#capsa__individual{
+    display: flex;
+    align-items: center;
+    margin:0.625rem  0rem 0.625rem 0rem; /* 10px 0px 10px 0px */ /* top right bottom left */
+}
+
+/* Text */
+#capsa__titol{
+    font-family: "Inter", serif;
+    font-size: 1.188rem; /* 19px */
+    font-weight: 500;
+    color: var(--colortext);
+}
+
+#capsa__desc{
+    font-family: "Spline Sans", serif;
+    font-size: 1.063rem; /* 17px */
+    font-weight: 400;
+    color: var(--colortext);
+    padding-left: 0.313rem; /* 5px */
+}

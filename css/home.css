@@ -40,14 +40,7 @@
     border: 0.125rem solid var(--colortext); /* 2px */
     border-radius: 0.438rem; /* 7px */
     padding: 0.938rem; /* 15px */
-    margin: 0rem 0.938rem 0.938rem 0rem; /* 0px 15px 15px 0px */
-}
-
-.capsa__petitat{
-    border: 0.125rem solid var(--colortext); /* 2px */
-    border-radius: 0.438rem; /* 7px */
-    padding: 0.938rem; /* 15px */
-    margin: 0rem 0.938rem 0.938rem 0rem; /* 0px 15px 15px 0px */
+    margin-bottom: 0.938rem; /* 15px */
 }
 
 /* Text */
@@ -65,6 +58,11 @@
     font-weight: 400;
     margin-bottom: 0.625rem; /* 10px */
     color: var(--colortext);
+}
+
+/* Enllaç */
+#capsa__enllac{
+    text-decoration: none;
 }
 
 /* Botó */

@@ -13,19 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Error en la descripció
         if (errorMessage.includes("bad description")) {
-            const nameError = document.getElementById('error-descripcio');
-            if (nameError) {
-                nameError.textContent = "Descripció no vàlida.";
-                nameError.style.display = "block";
+            const descriptionError = document.getElementById('error-descripcio');
+            if (descriptionError) {
+                descriptionError.textContent = "Descripció no vàlida.";
+                descriptionError.style.display = "block";
             }
         }
 
         // Error en el dia
         if (errorMessage.includes("bad day")) {
-            const nameError = document.getElementById('error-dia');
-            if (nameError) {
-                nameError.textContent = "Dia no vàlid.";
-                nameError.style.display = "block";
+            const dayError = document.getElementById('error-dia');
+            if (dayError) {
+                dayError.textContent = "Dia no vàlid.";
+                dayError.style.display = "block";
             }
         }
     }

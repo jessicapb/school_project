@@ -7,10 +7,8 @@ session_start()
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendari d'exàmens</title>
-
-    <!-- FullCalendar CSS (si lo deseas, también puedes colocarlo aquí) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.css" rel="stylesheet">  
-    <link rel="stylesheet" href="css/examen/veureexamen.css">
+    <link rel="stylesheet" href="css/veurecamps/examen/veureexamen.css">
     <link rel="icon" href="img/iconacole.png" type="image/x-icon">
 </head>
 <body>
@@ -35,13 +33,12 @@ session_start()
         </div>
     </section>
 
-    <!-- Fletxa arriba -->
+    <!-- Fletxa puja -->
     <?php include 'parts/fletxadalt/fletxadalt.view.php'?>
 
     <!-- Footer -->
     <?php include 'parts/footer/footer.view.php'?>
 
-    <!-- Cargar las bibliotecas de JavaScript al final del body -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"></script>
@@ -49,17 +46,17 @@ session_start()
 
     <script>
         $(document).ready(function() {
-            var eventos = <?php echo json_encode($eventos); ?>;
+            var esdeveniments = <?php echo json_encode($esdeveniments); ?>;
             $('#calendar').fullCalendar({
-                events: eventos,
+                events: esdeveniments,
                 locale: 'ca',
                 header: {
                     left: '',
                     center: 'title',
                     right: 'prev,next'
                 },
-                eventClick: function(event) {
-                    alert('Esdeveniment: ' + event.title + ' ' + event.description);
+                eventClick: function(esdeveniments) {
+                    alert('Esdeveniment: ' + esdeveniments.title + ' ' + esdeveniments.description);
                 },
                 noEventsMessage: 'No hi ha esdeveniments per mostrar'
             });

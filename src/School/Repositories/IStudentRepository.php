@@ -1,4 +1,5 @@
 <?php
+
 namespace App\School\Repositories;
 
 use App\School\Entities\Student;

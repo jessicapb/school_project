@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Infrastructure\Persistence;
 
 use App\School\Repositories\IStudentRepository;

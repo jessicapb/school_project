@@ -22,19 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Error en el cognom
         if (errorMessage.includes("bad surname")) {
-            const nameError = document.getElementById('error-surname');
-            if (nameError) {
-                nameError.textContent = "Cognom no vàlid.";
-                nameError.style.display = "block";
+            const surnameError = document.getElementById('error-surname');
+            if (surnameError) {
+                surnameError.textContent = "Cognom no vàlid.";
+                surnameError.style.display = "block";
             }
         }
 
         // Error en la contrasenya
         if (errorMessage.includes("bad password")) {
-            const nameError = document.getElementById('error-password');
-            if (nameError) {
-                nameError.textContent = "Contrasenya no vàlida.";
-                nameError.style.display = "block";
+            const passwordError = document.getElementById('error-password');
+            if (passwordError) {
+                passwordError.textContent = "Contrasenya no vàlida.";
+                passwordError.style.display = "block";
             }
         }
 
@@ -49,19 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Error en el correu electrònic
         if (errorMessage.includes("bad email")) {
-            const phonenumberError = document.getElementById('error-email');
-            if (phonenumberError) {
-                phonenumberError.textContent = "Correu electrònic no vàlid.";
-                phonenumberError.style.display = "block";
+            const emailError = document.getElementById('error-email');
+            if (emailError) {
+                emailError.textContent = "Correu electrònic no vàlid.";
+                emailError.style.display = "block";
             }
         }
 
         // Error en la identificació
         if (errorMessage.includes("bad ident")) {
-            const phonenumberError = document.getElementById('error-ident');
-            if (phonenumberError) {
-                phonenumberError.textContent = "RALC no vàlid.";
-                phonenumberError.style.display = "block";
+            const identError = document.getElementById('error-ident');
+            if (identError) {
+                identError.textContent = "RALC no vàlid.";
+                identError.style.display = "block";
                 }
         }
 
@@ -76,10 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Error en l'assignatura
         if (errorMessage.includes("bad subject")) {
-            const phonenumberError = document.getElementById('error-subject');
-            if (phonenumberError) {
-                phonenumberError.textContent = "Assignatura no vàlida.";
-                phonenumberError.style.display = "block";
+            const subjectError = document.getElementById('error-subject');
+            if (subjectError) {
+                subjectError.textContent = "Assignatura no vàlida.";
+                subjectError.style.display = "block";
             }
         }
 

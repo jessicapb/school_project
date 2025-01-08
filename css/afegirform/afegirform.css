@@ -6,6 +6,10 @@
 /* Colors */
 :root{
     --colortext: black;
+    --colortitol: #1c2833;
+    --backgroundinput: #e5e8e8;
+    --bgbotó: #7fb3d5;
+    --errormessage: red;
 }
 
 /* Global */
@@ -42,7 +46,7 @@
     font-family: "Nunito Sans", sans-serif;
     font-size: 1.188rem; /* 19px */
     color: var(--colortext);
-    margin: 0.938rem 0rem 0.625rem 0rem; /* 15px 10px 10px 20px*/ /* top right bottom left */
+    margin: 0.938rem 0rem 0.625rem 0rem; /* 15px 0px 10px 0px */ /* top right bottom left */
     font-weight: bold;
 }
 
@@ -50,14 +54,14 @@
 .centrarform{
     display: flex;
     justify-content: center;
-    margin-bottom: 15px;
+    margin-bottom: 0.938rem; /* 15px */
 }
 
 /* Box formulari */
 #centrarform__box{
-    padding: 15px;
-    border-radius: 5px;
-    border: 2px solid black;
+    padding: 0.938rem; /* 15px */
+    border-radius: 0.313rem; /* 5px */
+    border: 0.125rem solid var(--colortext); /* 2px */
 }
 
 /* Unió dades */
@@ -68,39 +72,53 @@
 
 /* Títol dades */
 #uniodades__titol{
-    font-size: 25px;
-    color: #1c2833;
+    font-size: 1.375rem; /* 22px */
+    color: var(--colortitol);
     font-family: "Spline Sans", serif;
     text-align: center;
     font-weight: 600;
-    margin-bottom: 5px;
+    margin: 0.313rem 0rem 0.313rem 0rem;/* 5px 0px 5px 0px */ /* top right bottom left */
 }
 
 /* Label */
 #uniodades__label{
-    color: black;
+    color: var(--colortext);
     font-family: "Mulish", serif;
-    font-size: 19px;
+    font-size: 1.188rem; /* 19px */
     font-weight: 500;
-    margin: 10px 0rem 5px 0rem;/* top right bottom left */
+    margin: 0.625rem 0rem 0.313rem 0rem;/* 10px 0px 5px 0px*/ /* top right bottom left */
 }
 
 /* Input */
 #uniodades__input{
-    background-color: #e5e8e8;
+    background-color: var(--backgroundinput);
     border: none;
-    border-radius: 5px;
+    border-radius: 0.313rem; /* 5px */
     outline: none;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 0.625rem; /* 10px */
+    margin-bottom: 0.625rem; /* 10px */
+}
+
+.uniodades__input{
+    background-color: var(--backgroundinput);
+    border: none;
+    border-radius: 0.313rem; /* 5px */
+    outline: none;
+    padding: 0.625rem; /* 10px */
+    margin-bottom: 0.625rem; /* 10px */
 }
 
 input,
 textarea,
 ::placeholder{
-    color: black;
+    color: var(--colortext);
     font-family: "Nunito Sans", sans-serif;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
+}
+
+/* Ensenya contrasenya */
+#clickme {
+    cursor: pointer
 }
 
 /* Botó */
@@ -116,9 +134,9 @@ textarea,
     padding: 0.625rem; /* 10px */
     border: none;
     background-color: var(--bgbotó);
-    margin-right: 0.625rem; /* 10px */
+    margin-top: 0.313rem; /* 5px */
     /* Text */
-    font-size: 19px;
+    font-size: 1.188rem; /* 19px */
     font-family: "Barlow", sans-serif;
     font-weight: 500; 
     color: var(--colortext);
@@ -130,9 +148,9 @@ textarea,
 
 /* missatge error */
 .error-message {
-    color: red;
-    margin-top: 5px;
+    color: var(--errormessage);
+    margin-top: 0.313rem; /* 5px */
     font-family: "Nunito Sans", sans-serif;
     display: none;
-    font-size: 15px;
+    font-size: 0.938rem; /* 15px */
 }

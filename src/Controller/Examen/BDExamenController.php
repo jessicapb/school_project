@@ -31,8 +31,7 @@ class BDExamenController {
                 $examRepository = new ExamRepository($this->db);
                 $exam = new Exam($nom, $descripcio, $dia);
                 $examRepository->save($exam);
-                $_SESSION['eventos'] = $this->getEventos();
-                header('Location: /index');
+                header('Location: /veureexamen');
                 exit;
             } catch (BuildExceptions $e) {
                 session_start();
@@ -40,21 +39,20 @@ class BDExamenController {
                 header('Location: /indexexamen');
                 exit;
             }
-            $_SESSION['eventos'] = null;
         }
     }
-
-    public function getEventos() {
+    
+    public function getEsdeveniments() {
         session_start();
         $sql = "SELECT nom, descripcio, dia FROM examens";
         $stmt = $this->db->query($sql);
-        $eventos = [];
+        $esdeveniments = [];
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         if ($result) {
             foreach ($result as $row) {
                 if ($row['dia'] != null) {
                     $fecha_formateada = date('Y-m-d', strtotime($row['dia']));
-                    $eventos[] = [
+                    $esdeveniments[] = [
                         'title' => $row['nom'],
                         'description' => $row['descripcio'],
                         'start' => $fecha_formateada
@@ -62,12 +60,12 @@ class BDExamenController {
                 }
             }
         }
-        $_SESSION['eventos'] = $eventos;
-        return $eventos;
+        $_SESSION['esdeveniments'] = $esdeveniments;
+        return $esdeveniments;
     }
     
     public function mostrarVista() {
-        $eventos = $this->getEventos();
-        echo view('veureexamen', ['eventos' => $eventos]);
+        $esdeveniments = $this->getEsdeveniments();
+        echo view('veureexamen', ['esdeveniments' => $esdeveniments]);
     }
 }

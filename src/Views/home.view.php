@@ -21,7 +21,7 @@
                 <div class="capsa">
                         <h1 id="capsa__titol">Alumne</h1>
                         <p id="capsa__desc">En aquest apartat veuràs tots els alumnes que té l'escola.</p>
-                        <a href="/veurealumne">
+                        <a id="capsa__enllac" href="/veurealumne">
                             <button id="capsa__bt">Veure alumnes</button>
                         </a>
                         <button id="capsa__bt">Cerca pel nom</button>
@@ -36,8 +36,8 @@
                 </div>
 
                 <!-- Cursos -->
-                <div class="capsa__petitat">
-                    <h1 id="capsa__titol">Cursos</h1>
+                <div class="capsa">
+                    <h1 id="capsa__titol">Curs</h1>
                     <p id="capsa__desc">En aquest apartat veuràs tots els cursos que té l'escola.</p>
                     <button id="capsa__bt">Veure cursos</button>
                     <button id="capsa__bt">Cerca pel nom</button>
@@ -47,7 +47,9 @@
                 <div class="capsa">
                     <h1 id="capsa__titol">Departament</h1>
                     <p id="capsa__desc">En aquest apartat veuràs tots els departaments que té l'escola.</p>
-                    <button id="capsa__bt">Veure departaments</button>
+                    <a id="capsa__enllac" href="/veuredepartament">
+                        <button id="capsa__bt">Veure departaments</button>
+                    </a>
                     <button id="capsa__bt">Cerca pel nom</button>
                 </div>
 
@@ -55,22 +57,36 @@
                 <div class="capsa">
                     <h1 id="capsa__titol">Examen</h1>
                     <p id="capsa__desc">En aquest apartat veuràs tots els exàmens que té l'escola.</p>
-                    <a href="/veureexamen">
+                    <a id="capsa__enllac" href="/veureexamen">
                         <button id="capsa__bt">Veure exàmens</button>
                     </a>
                     
                     <button id="capsa__bt">Cerca pel nom</button>
                 </div>
+
+                <!-- Graus -->
                 <div class="capsa">
-                    <h1 id="capsa__titol">Departament</h1>
-                    <p id="capsa__desc">En aquest apartat veuràs tots els departaments que té l'escola.</p>
-                    <button id="capsa__bt">Veure departaments</button>
+                    <h1 id="capsa__titol">Grau</h1>
+                    <p id="capsa__desc">En aquest apartat veuràs tots els graus que té l'escola.</p>
+                    <a id="capsa__enllac" href="/veuregrau">
+                        <button id="capsa__bt">Veure graus</button>
+                    </a>
                     <button id="capsa__bt">Cerca pel nom</button>
                 </div>
+
+                <!-- Inscripció -->
                 <div class="capsa">
-                    <h1 id="capsa__titol">Departament</h1>
-                    <p id="capsa__desc">En aquest apartat veuràs tots els departaments que té l'escola.</p>
-                    <button id="capsa__bt">Veure departaments</button>
+                    <h1 id="capsa__titol">Inscripció</h1>
+                    <p id="capsa__desc">En aquest apartat veuràs totes les inscripcions que té l'escola.</p>
+                    <button id="capsa__bt">Veure inscripcions</button>
+                    <button id="capsa__bt">Cerca pel nom</button>
+                </div>
+
+                <!-- Professor -->
+                <div class="capsa">
+                    <h1 id="capsa__titol">Professor</h1>
+                    <p id="capsa__desc">En aquest apartat veuràs tots els professors que té l'escola.</p>
+                    <button id="capsa__bt">Veure professors</button>
                     <button id="capsa__bt">Cerca pel nom</button>
                 </div>
             </div>

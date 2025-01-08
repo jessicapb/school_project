@@ -51,7 +51,7 @@ class GuardarAlumneController {
                 }
                 $student = new Student($name, $surname, $password, $phonenumber, $email, $ident, $course, $subject, $dni, $enrollment);
                 $studentRepository->save($student);
-                header('Location: /index');
+                header('Location: /veurealumne');
                 exit;
             } catch (BuildExceptions $e) {
                 session_start();
@@ -62,7 +62,7 @@ class GuardarAlumneController {
             
         }
     }
-
+    
     public function getStudents() {
         session_start();
         $sql = "SELECT name, surname, password, phonenumber, email, ident, course, subject, dni, enrollment FROM students";
@@ -72,18 +72,21 @@ class GuardarAlumneController {
         if ($result) {
             foreach ($result as $row) {
                     $students[] = [
-                        'title' => $row['name'],
-                        'description' => $row['descripcio'],
-                        'start' => $fecha_formateada
+                        'name' => $row['name'],
+                        'surname' => $row['surname'],
+                        'phonenumber' => $row['phonenumber'],
+                        'email' => $row['email'],
+                        'course' => $row['course'],
+                        'subject' => $row['subject']
                     ];
             }
         }
-        $_SESSION['eventos'] = $eventos;
-        return $eventos;
+        $_SESSION['students'] = $students;
+        return $students;
     }
     
     public function mostrarVista() {
-        $eventos = $this->getEventos();
-        echo view('veureexamen', ['eventos' => $eventos]);
-    }
+        $students = $this->getStudents();
+        echo view('veurealumnes', ['students' => $students]);
+    }    
 }

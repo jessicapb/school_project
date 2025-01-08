@@ -32,6 +32,15 @@ class PatternChecker {
         }
     }
 
+    public static function checkYear(string $year):bool{
+        $RE = '/^\d{4}$/';
+        if(preg_match($RE, $year)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public static function checkDate(string $date): \DateTime {
         $patron = "~^\d{4}-\d{2}-\d{2}$~"; 
         
@@ -45,7 +54,6 @@ class PatternChecker {
         }
         return $fechaCorrecta;
     }
-    
 
     public static function getErrorMessage(int $e): string {
         switch ($e) {
@@ -54,6 +62,7 @@ class PatternChecker {
             case -6: return "Bad pattern Date";
             case -7: return "Bad pattern Phone";
             case -8: return "Bad pattern DNI";
+            case -9: return "Bad pattern Year";
         }
     }
 }

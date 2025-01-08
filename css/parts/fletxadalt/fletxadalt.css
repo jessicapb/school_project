@@ -1,3 +1,8 @@
+/* Colors */
+:root{
+    --background: black;
+}
+
 /* Global */
 *{
     margin: 0rem; /* 0px */
@@ -6,15 +11,15 @@
 
 /* Fletxa Dalt */
 .box{
-    width: 45px;
-    height: 45px;
+    width: 2.813rem; /* 45px */
+    height: 2.813rem; /* 45px */
     position: fixed;
     z-index: 1000;
-    bottom: 70px;
-    right: 19px;
-    font-size: 20px;
-    background: var(--colortext);
-    border-radius: 5px !important;
+    bottom: 4.375rem; /* 70px */
+    right: 1.188rem; /* 19px */
+    font-size: 1.25rem; /* 20px */
+    background: var(--background);
+    border-radius: 0.313rem !important; /* 5px */
     text-align: center;
     opacity: 1;
     visibility: visible; 

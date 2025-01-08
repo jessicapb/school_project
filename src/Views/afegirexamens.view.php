@@ -26,7 +26,7 @@
     <form action="/saveexam" class="centrarform" method="POST">
         <fieldset id="centrarform__box">
             <div class="uniodades">
-                <legend id="uniodades__titol">AFEGIR EXÀMENS</legend>
+                <legend id="uniodades__titol">AFEGIR EXAMEN</legend>
 
                 <!-- Nom -->
                 <label id="uniodades__label" for="">Nom</label>
@@ -56,16 +56,21 @@
 
     <script>
         <?php 
-        session_start();
-        if (isset($_SESSION['error'])): 
+        session_start(); 
+        if (isset($_SESSION['error'])) { 
         ?>
-        const serverError = <?= json_encode($_SESSION['error']); ?>;
-        <?php unset($_SESSION['error']); ?>
-        <?php else: ?>
-        const serverError = null;
-        <?php endif; ?>
+            const serverError = <?= json_encode($_SESSION['error']); ?>;
+            <?php unset($_SESSION['error']);?>
+        <?php
+        } else {
+        ?>
+            const serverError = null;
+        <?php
+        }
+        ?>
     </script>
 
+    <!-- Fitxers dels errors -->
     <script src="javascript/examen/error-examen.js"></script>
 </body>
 </html>
