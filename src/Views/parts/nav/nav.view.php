@@ -12,7 +12,7 @@
             <nav class="boxdown">
                 <div class="boxinfo">
                     <a href="/index" id="boxinfo__text">Inici</a>
-                    <p id="boxinfo__text">Nosaltres</p>
+                    <a href="/indexnosaltres" id="boxinfo__text">Nosaltres</a>
                     <div class="dropdown">
                         <p id="boxinfo__text--diff">Afegir</p>
                         <div class="dropdown-content">

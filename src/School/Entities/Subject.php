@@ -6,11 +6,12 @@ use App\School\Checks\Check;
 use App\School\Exceptions\BuildExceptions;
 
 class Subject{
+    protected int $id;
     protected string $name;
     protected string $description;
-    protected string $course;
+    protected int $course_id;
 
-    public function __construct(string $name, string $description, string $course){
+    public function __construct(string $name, string $description, int $course_id){
         $message = "";
         $error = 0;
         if(($error = $this->setName($name)) !=0){
@@ -62,19 +63,7 @@ class Subject{
         return 0;
     }
     
-    public function getCourse(): string{
+    public function getCourseId(): int{
         return $this->course;
-    }
-    
-    public function setCourse(string $course): string{
-        if(Check::isNull($course) == true){
-            return -1;
-        }
-        
-        if(Check::minLenght($course,2) !=0){
-            return -2;
-        }
-        $this->course = $course;
-        return 0;
     }
 }

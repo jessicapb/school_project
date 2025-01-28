@@ -7,14 +7,39 @@ use App\School\Checks\Check;
 use App\School\Exceptions\BuildExceptions;
 
 class Course{
+    protected int $id;
     protected string $name;
+    protected string $description;
     protected string $degree;
-    protected $subjects=[];
+    protected array $subjects = [];
 
-    function __construct(string $degree, string $grau){
+    public function __construct(string $name, string $description, string $degree, array $subjects){
         $message = "";
         $error = 0;
-        $this->name=$name;
+        if(($error = $this->setName($name)) !=0){
+            $message .= "Bad name";
+        }
+        
+        if(($error = $this->setDescription($description)) !=0){
+            $message .="Bad description";
+        }
+        
+        if(($error = $this->setDegree($degree)) !=0){
+            $message .="Bad degree";
+        }
+        
+        $this->subjects = $subjects;
+        if(strlen($message)>0){
+            throw new BuildExceptions("No es pot crear" . $message);
+        }
+    }
+    
+    public function getId(): int{
+        return $this->id;
+    }
+    
+    public function setId(int $id) {
+        $this->id = $id;
     }
 
     public function getName(): string{
@@ -33,6 +58,22 @@ class Course{
         return 0;
     }
     
+    public function getDescription (): string{
+        return $this->description;
+    }
+    
+    public function setDescription(string $description): int{
+        if(Check::isNull($description) == true){
+            return -1;
+        }
+        
+        if(Check::minLenght($description, 3) !=0){
+            return -2;
+        }
+        $this->description = $description;
+        return 0;
+    }
+
     public function getDegree(): string{
         return $this->name;
     }
@@ -42,10 +83,28 @@ class Course{
             return -1;
         }
         
-        if(Check::minLenght($degree, 1))
+        if(Check::minLenght($degree, 1) !=0){
+            return -2;
+        }
         $this->degree = $degree;
         return 0;
     }
+    
+    public function getSubjects(): array{
+        return $this->subjects;
+    }
+    
+    /*public function setSubjects(array $subjects): int{
+        if(Check::isNull($subjects) == true){
+            return -1;
+        }
+        
+        if(Check::minLenght($subjects, 3) !=0){
+            return -2;
+        }
+        $this->subjects = $subjects;
+        return 0;
+    }*/
     
     public function addSubject(Subject $subject){
         $this->subjects[]=$subject;

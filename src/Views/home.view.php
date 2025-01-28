@@ -24,7 +24,9 @@
                         <a id="capsa__enllac" href="/veurealumne">
                             <button id="capsa__bt">Veure alumnes</button>
                         </a>
-                        <button id="capsa__bt">Cerca pel nom</button>
+                        <a id="capsa__enllac" href="/trobardni">
+                            <button id="capsa__bt">Cerca pel DNI</button>
+                        </a>
                 </div>
 
                 <!-- Assignatura -->

@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +23,7 @@ session_start();
     </article>
 
     <!-- Formulari -->
-    <form action="/savedepartment" class="centrarform" method="POST">
+    <form action="/savecourse" class="centrarform" method="POST">
         <fieldset id="centrarform__box">
             <div class="uniodades">
                 <legend id="uniodades__titol">AFEGIR CURS</legend>
@@ -38,18 +35,18 @@ session_start();
 
                 <!-- Descripció -->
                 <label id="uniodades__label" for="">Descripció</label>
-                <textarea id="uniodades__input" name="subject" cols="40" placeholder="escriu la descripció." required></textarea>
-                <p class="error-message" id="error-people"></p>
+                <textarea id="uniodades__input" name="description" cols="40" placeholder="escriu la descripció." required></textarea>
+                <p class="error-message" id="error-description"></p>
 
-                <!-- Assignatures -->
-                <label id="uniodades__label" for="">Assignatures</label>
-                <textarea id="uniodades__input" name="subject" cols="40" placeholder="escriu les assignatures." required></textarea>
-                <p class="error-message" id="error-people"></p>
+                <!-- Assignatura -->
+                <label id="uniodades__label" for="">Assignatura</label>
+                <input id="uniodades__input" placeholder="escriu l'assignatura." type="text" name="subject" required>
+                <p class="error-message" id="error-subject"></p>
 
                 <!-- Grau -->
                 <label id="uniodades__label" for="">Grau al que pertany</label>
-                <input id="uniodades__input" placeholder="escriu el grau." type="number" name="people" required>
-                <p class="error-message" id="error-people"></p>
+                <input id="uniodades__input" placeholder="escriu el grau." type="text" name="degree" required>
+                <p class="error-message" id="error-degree"></p>
 
                 <!-- Botó afegir -->
                 <div class="boxbt">
@@ -59,7 +56,6 @@ session_start();
             </div>
         </fieldset>
     </form>
-    
 
     <!-- Link footer-->
     <?php include 'parts/footer/footer.view.php'?>
@@ -81,6 +77,6 @@ session_start();
     </script>
 
     <!-- Fitxers dels errors -->
-    <script src="javascript/departament/error-departament.js"></script>
+    <script src="javascript/curs/error-curs.js"></script>
 </body>
 </html>

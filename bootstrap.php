@@ -12,11 +12,13 @@ use App\Controller\Nosaltres\NosaltresController;
 use App\Controller\Alumne\AlumneAfegirController;
 use App\Controller\Alumne\GuardarAlumneController;
 use App\Controller\Alumne\VeureAlumneController;
+use App\Controller\Alumne\TrobarAlumneController;
 
 use App\Controller\Assignatura\AssignaturaAfegirController;
 use App\Controller\Assignatura\BDAssignaturaController;
 
 use App\Controller\Curs\CursAfegirController;
+use App\Controller\Curs\BDCursController;
 
 use App\Controller\Departament\DepartamentAfegirController;
 use App\Controller\Departament\BDDepartamentController;
@@ -38,6 +40,7 @@ use App\Infrastructure\Persistence\ExamRepository;
 use App\Infrastructure\Persistence\DepartamentRepository;
 use App\Infrastructure\Persistence\DegreesRepository;
 use App\Infrastructure\Persistence\SubjectRepository;
+use App\Infrastructure\Persistence\CourseRepository;
 
 //Rutas de les funcions
 use App\Infrastructure\Routing\Router;
@@ -59,18 +62,21 @@ $services->addServices('examRepository', fn() => new ExamRepository($db));
 $services->addServices('departmentRepository', fn() => new DepartamentRepository($db));
 $services->addServices('degreesRepository',fn() => new DegreesRepository($db));
 $services->addServices('subjectRepository',fn() => new SubjectRepository($db));
+$services->addServices('courseRepository',fn() => new CourseRepository($db));
 
 $studentRepository = $services->getService('studentRepository');
 $examRepository = $services->getService('examRepository');
 $departmentRepository = $services->getService('departmentRepository');
 $degreesRepository = $services->getService('degreesRepository');
 $subjectRepository = $services->getService('subjectRepository');
+$courseRepository = $services->getService('courseRepository');
 
 $guardarAlumneController = new GuardarAlumneController($db);
 $controllerexamen = new BDExamenController($db);
 $controllerdepartment = new BDDepartamentController($db);
 $controllergraus = new BDGrausController($db);
 $controllerassignatura = new BDAssignaturaController($db);
+$controllercurs = new BDCursController($db);
 
 // Rutes per veure les funcions
 $router = new Router();
@@ -80,6 +86,9 @@ $router
 
         // Porta a la pàgina del index
         ->addRoute('GET','/index',[new HomeController(),'index'])
+
+        // Enllaç a la pàgina nosaltres
+        ->addRoute('GET','/indexnosaltres',[new NosaltresController(),'indexnosaltres'])
 
         // Enllaç a afegir alumne
         ->addRoute('GET','/indexalumne',[new AlumneAfegirController(),'indexalumne'])
@@ -120,6 +129,9 @@ $router
         // Enllaç a veure els alumnes ficats
         ->addRoute('GET', '/veurealumne', [$guardarAlumneController, 'mostrarVista'])
 
+        // Enllaç a buscar un alumne per el DNI
+        ->addRoute('GET','/trobardni',[new TrobarAlumneController(),'trobardni'])
+
         // Guardar en la bd un grau o mostrar errors
         ->addRoute('POST','/savedegrees',[$controllergraus,'savedegrees'])
 
@@ -127,4 +139,7 @@ $router
         ->addRoute('GET','/veuregrau',[$controllergraus,'mostrarVista'])
 
         // Guardar en la bd una assignatura o mostrar errors
-        ->addRoute('POST','/savesubject',[$controllerassignatura,'savesubject']);
+        ->addRoute('POST','/savesubject',[$controllerassignatura,'savesubject'])
+        
+        //Guardar en la bd un curs o mostrar errors
+        ->addRoute('POST','/savecourse',[$controllercurs,'savecourse']);

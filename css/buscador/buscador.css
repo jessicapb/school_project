@@ -1,0 +1,37 @@
+/* Fonts Google importades*/
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Playwrite+HR+Lijeva+Guides&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* Global */
+*{
+    margin: 0rem; /* 0px */
+    padding: 0rem; /* 0px */
+}
+
+/* Capsa buscador */
+.general{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search{
+    display: flex;
+}
+
+#btbuscar{
+    border-radius: 0.438rem; /* 7px */
+    padding: 0.625rem; /* 10px */
+    border: 1px solid black;
+    background: none;
+}
+
+#btbuscar:hover{
+    cursor: pointer;
+}
+
+#lupa{
+    width: 10%;
+    height: 10%;
+}

@@ -99,21 +99,35 @@
     margin-bottom: 0.625rem; /* 10px */
 }
 
-.uniodades__input{
-    background-color: var(--backgroundinput);
-    border: none;
-    border-radius: 0.313rem; /* 5px */
-    outline: none;
-    padding: 0.625rem; /* 10px */
-    margin-bottom: 0.625rem; /* 10px */
-}
-
 input,
 textarea,
 ::placeholder{
     color: var(--colortext);
     font-family: "Nunito Sans", sans-serif;
     font-size: 1rem; /* 16px */
+}
+
+/* Contrasenya */
+.passwordbox{
+    display: flex;
+    align-items: center;
+}
+
+/* Contrasenya input */
+.passwordbox__input{
+    background-color: var(--backgroundinput);
+    border: none;
+    border-radius: 0.313rem; /* 5px */
+    outline: none;
+    padding: 0.625rem; /* 10px */
+    margin: 0rem 0.313rem 0.625rem 0rem; /*0px 5px 10px 0px */ /* top right bottom left */
+    width: 90%;
+}
+
+/* Imatge Ull */
+.passwordbox__img{
+    width: 5%;
+    margin-bottom: 0.313rem; /* 5px */
 }
 
 /* Ensenya contrasenya */

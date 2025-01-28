@@ -59,7 +59,6 @@ class GuardarAlumneController {
                 header('Location: /indexalumne');
                 exit;
             }
-            
         }
     }
     

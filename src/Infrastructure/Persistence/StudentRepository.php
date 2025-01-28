@@ -50,7 +50,8 @@ class StudentRepository implements IStudentRepository {
         }
     }
 
-    function findByDni($dni): Student {
+    function findByDni(string $dni): Student {
+
     }
 }
 
