@@ -7,18 +7,15 @@ use App\School\Exceptions\BuildExceptions;
 use App\School\Checks\Check;
 use App\School\Checks\PatternChecker;
 
-abstract class User{
+class User{
     protected string $name;
     protected string $surname;
     protected string $password;
     protected string $phonenumber;
     protected string $email;
     protected string $ident;
-    protected string $course;
-    protected string $subject;
     
-    public function __construct(string $name, string $surname, string $password, string $phonenumber, string $email, string $ident,
-                                string $course, string $subject) {
+    public function __construct(string $name, string $surname, string $password, string $phonenumber, string $email, string $ident) {
         $message = "";
         $error = 0;
         
@@ -33,11 +30,11 @@ abstract class User{
         if($error = $this->setPassword($password) !=0){
             $message .="Bad password, ";
         }
-
+        
         if($error = $this->setPhonenumber($phonenumber) !=0){
             $message .= "Bad phonenumber";
         }
-
+        
         if($error = $this->setEmail($email) !=0){
             $message .= "Bad email";
         }
@@ -46,13 +43,6 @@ abstract class User{
             $message .= "Bad ident";
         }
         
-        if($error = $this->setCourse($course) !=0){
-            $message .= "Bad course";
-        }
-        
-        if($error = $this->setSubject($subject) !=0){
-            $message .= "Bad subject";
-        }
         
         if (strlen($message) > 0) {
             throw new BuildExceptions("No es pot crear " . $message);
@@ -160,38 +150,6 @@ abstract class User{
             return -2;
         }
         $this->ident = $ident;
-        return 0;
-    }
-    
-    public function getCourse(): string {
-        return $this->course;
-    }
-    
-    public function setCourse(string $course): int {
-        if(Check::isNull($course) == true){
-            return -1;
-        }
-        
-        if(Check::minLenght($course, 4) !=0){
-            return -2;
-        }
-        $this->course = $course;
-        return 0;
-    }
-    
-    public function getSubject(): string {
-        return $this->subject;
-    }
-
-    public function setSubject(string $subject): int {
-        if(Check::isNull($subject) == true){
-            return -1;
-        }
-        
-        if(Check::minLenght($subject, 4) !=0){
-            return -2;
-        }
-        $this->subject = $subject;
         return 0;
     }
 }

@@ -7,24 +7,34 @@ use App\School\Checks\Check;
 use App\School\Checks\PatternChecker;
 
 class Department{
-    protected string $people;
+    protected ?int $id = null;
     protected string $name;
+    protected string $people;
 
-    public function __construct(string $people, string $name){
+    public function __construct(string $name, string $people){
         $message = "";
         $error = 0;
-        
-        if(($error = $this->setPeople($people)) !=0){
-            $message .= "Bad number of people";
-        }
-        
         if(($error = $this->setName($name)) !=0){
             $message .= "Bad name";
         }
         
+        if(($error = $this->setPeople($people)) !=0){
+            $message .= "Bad number of people";
+        }        
+        
+        
         if(strlen($message) > 0){
             throw new BuildExceptions("No es pot crear " . $message);
         }
+    }
+    
+    public function getId(): ?int{
+        return $this->id;
+    }
+    
+    public function setId(?int $id): int{
+        $this->id = $id;
+        return 0;
     }
     
     public function getPeople(): string{

@@ -28,31 +28,59 @@ class CourseRepository implements ICourseRepository{
 
     function save(Course $course){
         try {
-            // Obtener los nombres de las asignaturas como una cadena separada por comas
-            $subjectNames = [];
-            foreach ($course->getSubjects() as $subject) {
-                $subjectNames[] = $subject->getName();
-            }
-            $subjectNamesString = implode(',', $subjectNames);  // Combina los nombres de las asignaturas en una cadena
-            var_dump($subjectNamesString);
-            die;
-            // Ahora guarda la cadena de nombres de asignaturas en la base de datos
-            $sql = $this->db->prepare("INSERT INTO course(name, description, degree, subject) VALUES(:name, :description, :degree, :subject)");
+            $sql = $this->db->prepare("INSERT INTO course(name, description, degree_id, id) VALUES(:name, :description, :degree_id, :id)");
             $sql->execute([
                 'name' => $course->getName(),
                 'description' => $course->getDescription(),
-                'degree' => $course->getDegree(),
-                'subject' => $subjectNamesString,  // Guarda los nombres de asignaturas como una cadena
+                'degree_id' => $course->getDegreeId(),
+                'id' => $course->getId()
             ]);
             
-            $courseId = $this->db->lastInsertId();
-            $course->setId($courseId); 
         } catch (\PDOException $e) {
             throw new BuildExceptions("Error en guardar el curs: " . $e->getMessage());
         }
     }
 
-    function findByName($name){
-        // Este método debería ser implementado si se requiere
+    function findById(string $id): Course {
+        try {
+            $sql = $this->db->prepare("SELECT * FROM course WHERE id=:id");
+            $sql->execute(['id' => $id]);
+            
+            $fila = $sql->fetch(\PDO::FETCH_ASSOC);
+            
+            if ($fila) {
+                $course = new Course($fila['name'], $fila['description']);
+                $course->setId($fila['id']);
+                return $course;
+            }
+            
+        } catch (\PDOException $e) {
+            throw new BuildExceptions("Error al recuperar el curso: " . $e->getMessage());
+        }
+    }
+    
+
+    function show(){
+        $allcourse = [];
+        $sql = $this->db->prepare("SELECT * FROM course");
+
+        $sql->execute();
+        while($fila = $sql->fetch(\PDO::FETCH_ASSOC)){
+            $course = new Course($fila['name'], $fila['description']);
+            $course->setId($fila['id']);
+            $allcourse[] = $course;
+        }
+        return $allcourse;
+    }
+
+    function update(Course $course){
+        $sql = $this->db->prepare("UPDATE course SET degree_id = :degree_id WHERE id = :id");
+        $sql->execute([
+            'degree_id' => $course->getDegreeId(),
+            'id' => $course->getId()
+        ]);
+    }
+
+    function findByName($name){        
     }
 }

@@ -5,12 +5,18 @@ namespace App\Controller\Graus;
 use App\School\Entities\Degrees;
 use App\Infrastructure\Persistence\DegreesRepository;
 use App\School\Exceptions\BuildExceptions;
+use App\School\Services\DegreesServices;
 
 class BDGrausController{
     private \PDO $db;
+    private DegreesServices $DegreesServices;
+    private DegreesRepository $DegreesRepository;
 
     public function __construct(\PDO $db){
         $this->db = $db;
+
+        $this->DegreesRepository = new DegreesRepository($db);
+        $this->DegreesServices = new DegreesServices($db, $this->DegreesRepository);
     }
 
     public function savedegrees(){
@@ -25,14 +31,14 @@ class BDGrausController{
             $duration_years = $_POST['duration_years'];
 
             try {
-                $degreesRepository = new DegreesRepository($this->db);
-                if($degreesRepository->exists($name)){
-                    session_start();
-                    $_SESSION['error'] = "El departament amb el $name ja existeix.";
-                    header('Location: /indexgraus');
-                }
                 $degrees = new Degrees($name, $duration_years);
-                $degreesRepository->save($degrees);
+                if($this->DegreesServices->exists($name)){
+                    session_start();
+                    $_SESSION['error'] = "El grau amb el $name ja existeix.";
+                    header('Location: /indexgraus');
+                    exit;
+                }
+                $this->DegreesServices->save($degrees);
                 header('Location: /veuregrau');
                 exit;
             } catch (BuildExceptions $e) {

@@ -4,6 +4,7 @@ namespace App\Infrastructure\Persistence;
 
 use App\School\Repositories\ISubjectRepository;
 use App\School\Entities\Subject;
+use App\School\Entities\Course;
 use App\School\Exceptions\BuildExceptions;
 
 class SubjectRepository implements ISubjectRepository{
@@ -30,15 +31,55 @@ class SubjectRepository implements ISubjectRepository{
     
     function save(Subject $subject){
         try {
-            $sql = $this->db->prepare("INSERT INTO subjects (name, description, course) VALUES(:name, :description, :course)");
+            $sql = $this->db->prepare("INSERT INTO subjects (name, description, course_id, id) VALUES(:name, :description, :course_id, :id)");
             $sql->execute([
                 'name' => $subject->getName(),
                 'description' => $subject->getDescription(),
-                'course' => $subject->getCourse()
+                'course_id' => $subject->getCourseId(),
+                'id' => $subject->getId()
             ]);
         } catch (\PDOException $e) {
             throw new BuildExceptions("Error en guardar l'estudiant: " . $e->getMessage());
         }
+    }
+    
+    function findById(string $id): ?Subject {
+        try {
+            $sql = $this->db->prepare("SELECT * FROM subjects WHERE id=:id");
+            $sql->execute(['id' => $id]);
+            
+            if ($fila = $sql->fetch(\PDO::FETCH_ASSOC)) {
+                $subject = new Subject($fila['name'], $fila['description']); 
+                $subject->setId($fila['id']);  
+                return $subject;
+            }
+    
+            return null;
+            
+        } catch (\PDOException $e) {
+            throw new BuildExceptions("Error al recuperar la asignatura: " . $e->getMessage());
+        }
+    }        
+
+    function show(){
+        $allsubject = [];
+        $sql = $this->db->prepare("SELECT * FROM subjects");
+
+        $sql->execute();
+        while($fila = $sql->fetch(\PDO::FETCH_ASSOC)){
+            $subject = new Subject($fila['name'], $fila['description']);
+            $subject->setId($fila['id']);
+            $allsubject[] = $subject;
+        }
+        return $allsubject;
+    }
+
+    function update(Subject $subject){
+        $sql = $this->db->prepare("UPDATE subjects SET course_id = :course_id WHERE id = :id");
+        $sql->execute([
+            'course_id' => $subject->getCourseId(),
+            'id' => $subject->getId()
+        ]);
     }
 
     function findByName($name): Subject {

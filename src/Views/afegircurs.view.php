@@ -38,20 +38,9 @@
                 <textarea id="uniodades__input" name="description" cols="40" placeholder="escriu la descripció." required></textarea>
                 <p class="error-message" id="error-description"></p>
 
-                <!-- Assignatura -->
-                <label id="uniodades__label" for="">Assignatura</label>
-                <input id="uniodades__input" placeholder="escriu l'assignatura." type="text" name="subject" required>
-                <p class="error-message" id="error-subject"></p>
-
-                <!-- Grau -->
-                <label id="uniodades__label" for="">Grau al que pertany</label>
-                <input id="uniodades__input" placeholder="escriu el grau." type="text" name="degree" required>
-                <p class="error-message" id="error-degree"></p>
-
                 <!-- Botó afegir -->
                 <div class="boxbt">
                     <button id="boxbt__afegir" type="submit">Afegir</button>
-                    
                 </div>
             </div>
         </fieldset>

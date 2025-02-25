@@ -2,21 +2,26 @@
 namespace App\Controller\Curs;
 
 use App\School\Entities\Course;
-use App\School\Entities\Subject;
 use App\Infrastructure\Persistence\CourseRepository;
 use App\School\Exceptions\BuildExceptions;
+use App\School\Services\CourseServices;
 
 class BDCursController {
     private \PDO $db;
+    private CourseServices $CourseService;
+    private CourseRepository $CourseRepository;
 
     public function __construct(\PDO $db) {
         $this->db = $db;
+
+        $this->CourseRepository = new CourseRepository($db);
+        $this->CourseService = new CourseServices($db, $this->CourseRepository);
     }
 
     public function savecourse() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Verificación de campos obligatorios
-            if (empty($_POST['name']) or empty($_POST['description']) or empty($_POST['degree']) or empty($_POST['subject'])) {
+            if (empty($_POST['name']) 
+                or empty($_POST['description'])) {
                 $_SESSION['error'] = "Camps obligatoris.";
                 header('Location: /indexcurs');
                 exit;
@@ -24,37 +29,21 @@ class BDCursController {
 
             $name = $_POST['name'];
             $description = $_POST['description'];
-            $subject = $_POST['subject'];  // Asegúrate de que esto es un array de IDs
-            $degree = $_POST['degree'];
-            //var_dump($subject);
-            //die;
+            
             try {
-                $courseRepository = new CourseRepository($this->db);
-
-                // Verificar si el curso ya existe
-                if ($courseRepository->exists($name)) {
+                $course = new Course($name, $description);
+                if ($this->CourseService->exists($name)) {
                     session_start();
                     $_SESSION['error'] = "El curs amb el $name ja existeix.";
                     header('Location: /indexcurs');
                     exit;
                 }
-
-                // Crear el objeto Course
-                $course = new Course($name, $description, $degree, []);
-                foreach ($subject as $subjects) {
-                    $subject = new Subject($subjects);
-                    $course->addSubject($subjects);
-                }
-
-                // Guardar el curso
-                $courseRepository->save($course);  // Solo pasa el objeto Course
-
-                // Redirigir a la página principal
-                header('Location: /index');
+                
+                $this->CourseService->save($course);  
+                header('Location: /veurecurs');
             } catch (BuildExceptions $e) {
-                // Si hay errores al crear el curso
                 session_start();
-                $_SESSION['error'] =  $e->getMessage();
+                $_SESSION['error'] = $e->getMessage();
                 header('Location: /indexcurs');
                 exit;
             }

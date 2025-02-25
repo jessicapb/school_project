@@ -18,6 +18,8 @@
 --
 -- Table structure for table `course`
 --
+CREATE DATABASE `a3projecte`;
+use a3projecte;
 
 DROP TABLE IF EXISTS `course`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -38,8 +40,6 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES
-(11,'2daw','aaaaaaaa','','2daw');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +84,7 @@ CREATE TABLE `department` (
   `name` varchar(100) NOT NULL,
   `people` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,10 @@ LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
 INSERT INTO `department` VALUES
 (1,'Informàtica','4'),
-(5,'Direcció','1');
+(5,'Direcció','1'),
+(7,'SMIX2','6'),
+(8,'LLLLLLLL','-4'),
+(9,'Smix56','4');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,17 +146,12 @@ DROP TABLE IF EXISTS `students`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `students` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `surname` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `phonenumber` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `ident` varchar(10) NOT NULL,
-  `course` varchar(100) NOT NULL,
-  `subject` varchar(100) NOT NULL,
   `dni` varchar(100) NOT NULL,
-  `enrollment` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
+  `enrollment` date NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `students_users_FK_1` (`user_id`),
+  CONSTRAINT `students_users_FK_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -163,11 +161,6 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES
-(8,'Jessica','Prats','Joquese2024','34 683 89 34 56','jessica.prats13@gmail.com','1234567890','2DAW','M08, M09, M07, M05.','12345678Y','20250117'),
-(9,'M07','Núria','Joquese2024','34 678 90 09 09','jessica.nuria@gmail.com','2345678901','2DAW','m08, m06, m04.','23456789B','20250131'),
-(10,'Carles','Meca','carlesmeca2025','34 678 90 09 09','carles.nuria@gmail.com','2345678909','2 DAW','M05, M06, M07, M08, M12 i Tutoria.','23456789C','20240712'),
-(11,'Jessica2','Prats','Joquese2025','34 678 90 09 09','jessica.nuria@gmail.com','1234567890','2DAW','m08,m07, m05','56789098V','2025');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,6 +195,34 @@ INSERT INTO `subjects` VALUES
 UNLOCK TABLES;
 
 --
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `surname` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `phonenumber` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `ident` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping routines for database 'a3projecte'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -214,4 +235,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-28 15:48:52
+-- Dump completed on 2025-02-23 11:29:36

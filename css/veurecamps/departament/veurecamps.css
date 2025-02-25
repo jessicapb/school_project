@@ -61,6 +61,14 @@
     width: 12%;
 }
 
+#capsa__big{
+    border: 0.125rem solid var(--colortext); /* 2px */
+    border-radius: 0.438rem; /* 7px */
+    padding: 0.938rem; /* 15px */
+    margin-bottom: 0.938rem; /* 15px */
+    width: 18%;
+}
+
 #capsa__individual{
     display: flex;
     align-items: center;
@@ -73,6 +81,14 @@
     font-size: 1.188rem; /* 19px */
     font-weight: 500;
     color: var(--colortext);
+}
+
+#capsa__desc{
+    font-family: "Spline Sans", serif;
+    font-size: 1.063rem; /* 17px */
+    font-weight: 400;
+    color: var(--colortext);
+    padding-left: 0.313rem; /* 5px */
 }
 
 #capsa__desc{

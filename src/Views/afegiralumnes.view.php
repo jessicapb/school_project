@@ -66,19 +66,9 @@
                 <input id="uniodades__input" type="number" placeholder="escriu el ralc." name="ident" required>
                 <p class="error-message" id="error-ident"></p>
 
-                <!-- Curs -->
-                <label id="uniodades__label" for="">Curs</label>
-                <input id="uniodades__input" type="text" placeholder="escriu el curs." name="course" required>
-                <p class="error-message" id="error-course"></p>
-
-                <!-- Assignatures -->
-                <label id="uniodades__label" for="">Assignatures</label>
-                <textarea id="uniodades__input" name="subject" cols="40" placeholder="escriu les assignatures." required></textarea>
-                <p class="error-message" id="error-subject"></p>
-
                 <!-- Any d'inscripció -->
                 <label id="uniodades__label" for="">Any d'inscripció</label>
-                <input id="uniodades__input" type="number"  placeholder="escriu l'any d'inscripció." name="enrollment" required>
+                <input id="uniodades__input" type="date"  placeholder="escriu l'any d'inscripció." name="enrollment" required>
                 <p class="error-message" id="error-enrollment"></p>
 
                 <!-- Botó afegir -->

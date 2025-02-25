@@ -38,11 +38,6 @@
                 <textarea id="uniodades__input" name="description" cols="40" placeholder="escriu la descripció." required></textarea>
                 <p class="error-message" id="error-description"></p>
 
-                <!-- Curs -->
-                <label id="uniodades__label" for="">Curs al que pertany</label>
-                <input id="uniodades__input" placeholder="escriu el curs." type="text" name="course" required>
-                <p class="error-message" id="error-course"></p>
-
                 <!-- Botó afegir -->
                 <div class="boxbt">
                     <button id="boxbt__afegir" type="submit">Afegir</button>

@@ -29,14 +29,47 @@ class DegreesRepository implements IDegreesRepository{
 
     function save(Degrees $degrees){
         try {
-            $sql = $this->db->prepare("INSERT INTO degrees(name, duration_years) VALUES(:name, :duration_years)");
+            $sql = $this->db->prepare("INSERT INTO degrees(name, duration_years, id) VALUES(:name, :duration_years, :id)");
             $sql->execute([
                 'name' => $degrees->getName(),
-                'duration_years' => $degrees->getDurationYears()
+                'duration_years' => $degrees->getDurationYears(),
+                'id' => $degrees->getId(),
             ]);
         } catch (\PDOException $e) {
             throw new BuildExceptions("Error en guardar el grau: " . $e->getMessage());
         }
+    }
+
+    function findById(string $id): Degrees {
+        try {
+            $sql = $this->db->prepare("SELECT * FROM degrees WHERE id=:id");
+            $sql->execute(['id' => $id]);
+            
+            $fila = $sql->fetch(\PDO::FETCH_ASSOC);
+            
+            if ($fila) {
+                $department = new Degrees($fila['name'], $fila['duration_years']);
+                $department->setId($fila['id']);
+                return $department;
+            }
+            
+        } catch (\PDOException $e) {
+            throw new BuildExceptions("Error al recuperar el curso: " . $e->getMessage());
+        }
+    }
+    
+
+    function show(){
+        $alldegrees = [];
+        $sql = $this->db->prepare("SELECT * FROM degrees");
+
+        $sql->execute();
+        while($fila = $sql->fetch(\PDO::FETCH_ASSOC)){
+            $degrees = new Degrees($fila['name'], $fila['duration_years']);
+            $degrees->setId($fila['id']);
+            $alldegrees[] = $degrees;
+        }
+        return $alldegrees;
     }
 
     function findByName($name): Degrees{

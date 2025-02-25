@@ -6,6 +6,7 @@ use App\School\Exceptions\BuildExceptions;
 use App\School\Checks\Check;
 
 class Degrees{
+    protected ?int $id = null;
     protected string $name;
     protected int $duration_years;
 
@@ -24,6 +25,15 @@ class Degrees{
         if(strlen($message) > 0){
             throw new BuildExceptions("No es pot crear " . $message);
         }
+    }
+    
+    public function getId(): ?int{
+        return $this->id;
+    }
+    
+    public function setId(?int $id): int{
+        $this->id = $id;
+        return 0;
     }
     
     public function getName(): string{

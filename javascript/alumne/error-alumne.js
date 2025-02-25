@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (dniError) {
                 dniError.textContent = "El DNI ja està registrat.";
                 dniError.style.display = "block";
+                dniError.classList.add("show");  
             }
         }
 
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (nameError) {
                 nameError.textContent = "Nom no vàlid.";
                 nameError.style.display = "block";
+                nameError.classList.add("show");  
             }
         }
 
@@ -26,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (surnameError) {
                 surnameError.textContent = "Cognom no vàlid.";
                 surnameError.style.display = "block";
+                surnameError.classList.add("show"); 
             }
         }
 
@@ -35,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (passwordError) {
                 passwordError.textContent = "Contrasenya no vàlida.";
                 passwordError.style.display = "block";
+                passwordError.classList.add("show");  
             }
         }
 
@@ -44,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (phonenumberError) {
                 phonenumberError.textContent = "Número de telèfon no vàlid. El fomat vàlid es: 34 XXX XX XX XX";
                 phonenumberError.style.display = "block";
+                phonenumberError.classList.add("show"); 
             }
         }
 
@@ -53,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (emailError) {
                 emailError.textContent = "Correu electrònic no vàlid.";
                 emailError.style.display = "block";
+                emailError.classList.add("show"); 
             }
         }
 
@@ -62,24 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (identError) {
                 identError.textContent = "RALC no vàlid.";
                 identError.style.display = "block";
-                }
-        }
-
-        // Error en el curs
-        if (errorMessage.includes("bad course")) {
-            const phonenumberError = document.getElementById('error-course');
-            if (phonenumberError) {
-                phonenumberError.textContent = "Curs no vàlid.";
-                phonenumberError.style.display = "block";
-            }
-        }
-
-        // Error en l'assignatura
-        if (errorMessage.includes("bad subject")) {
-            const subjectError = document.getElementById('error-subject');
-            if (subjectError) {
-                subjectError.textContent = "Assignatura no vàlida.";
-                subjectError.style.display = "block";
+                identError.classList.add("show");  
             }
         }
 
@@ -89,16 +78,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (enrollmentError) {
                 enrollmentError.textContent = "Error en la data d'inscripció.";
                 enrollmentError.style.display = "block";
+                enrollmentError.classList.add("show");  
             }
         }
-        
+
         // Error en el DNI
         if (errorMessage.includes("bad dni")) {
             const dniError = document.getElementById('error-dni');
             if (dniError) {
                 dniError.textContent = "DNI no vàlid.";
                 dniError.style.display = "block";
-                }
+                dniError.classList.add("show"); 
+            }
         }
     }
 });

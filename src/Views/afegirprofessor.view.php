@@ -26,60 +26,30 @@ session_start();
     </article>
 
     <!-- Formulari -->
-    <form action="/savestudent" class="centrarform" method="POST">
+    <form action="/saveteacher" class="centrarform" method="POST">
         <fieldset id="centrarform__box">
             <div class="uniodades">
                 <legend id="uniodades__titol">AFEGIR PROFESSOR</legend>
 
                 <!-- Nom -->
                 <label id="uniodades__label" for="">Nom</label>
-                <input id="uniodades__input" placeholder="escriu el nom de l'alumne." type="text" name="name" required>
+                <input id="uniodades__input" placeholder="escriu el nom." type="text" name="name" required>
                 <p class="error-message" id="error-name"></p>
-
-                <!-- DNI -->
-                <label id="uniodades__label" for="">DNI</label>
-                <input id="uniodades__input" placeholder="escriu el DNI de l'alumne." type="text" name="dni" required>
-                <p class="error-message" id="error-dni"></p>
 
                 <!-- Cognoms -->
                 <label id="uniodades__label" for="">Cognoms</label>
-                <input id="uniodades__input" type="text" placeholder="escriu els cognoms de l'alumne." name="surname" required>
+                <input id="uniodades__input" type="text" placeholder="escriu els cognoms." name="surname" required>
                 <p class="error-message" id="error-surname"></p>
 
-                <!-- Contrasenya -->
-                <label id="uniodades__label" for="">Contrasenya</label>
-                <input id="uniodades__input" type="text" placeholder="escriu la contrasenya de l'alumne." name="password" required>
-                <p class="error-message" id="error-password"></p>
-
-                <!-- Número de telèfon -->
-                <label id="uniodades__label" for="">Número telèfon</label>
-                <input id="uniodades__input" type="text" placeholder="escriu el número de telèfon del tutor legal." name="phonenumber" required>
-                <p class="error-message" id="error-phonenumber"></p>
+                <!-- DNI -->
+                <label id="uniodades__label" for="">DNI</label>
+                <input id="uniodades__input" placeholder="escriu el DNI." type="text" name="dni" required>
+                <p class="error-message" id="error-dni"></p>
 
                 <!-- Correu electrònic -->
                 <label id="uniodades__label" for="">Correu electrònic</label>
-                <input id="uniodades__input" type="email" placeholder="escriu el correu electrònic de l'alumne." name="email" required>
+                <input id="uniodades__input" type="email" placeholder="escriu el correu electrònic." name="email" required>
                 <p class="error-message" id="error-email"></p>
-
-                <!-- Identificació -->
-                <label id="uniodades__label" for="">RALC</label> <!-- Digits 10-->
-                <input id="uniodades__input" type="number" placeholder="escriu el ralc de l'alumne." name="ident" required>
-                <p class="error-message" id="error-ident"></p>
-
-                <!-- Curs -->
-                <label id="uniodades__label" for="">Curs</label>
-                <input id="uniodades__input" type="text" placeholder="escriu el curs que cursarà l'alumne." name="course" required>
-                <p class="error-message" id="error-course"></p>
-
-                <!-- Assignatures -->
-                <label id="uniodades__label" for="">Assignatures</label>
-                <textarea id="uniodades__input" name="subject" cols="40" placeholder="escriu les assignatures que cursarà l'alumne." required></textarea>
-                <p class="error-message" id="error-subject"></p>
-
-                <!-- Any d'inscripció -->
-                <label id="uniodades__label" for="">Any d'inscripció</label>
-                <input id="uniodades__input" type="date"  name="enrollment" required>
-                <p class="error-message" id="error-enrollment"></p>
 
                 <!-- Botó afegir -->
                 <div class="boxbt">
@@ -89,9 +59,6 @@ session_start();
             </div>
         </fieldset>
     </form>
-    
-    <!-- Fletxa dalt -->
-    <?php include 'parts/fletxadalt/fletxadalt.view.php'?>
 
     <!-- Link footer-->
     <?php include 'parts/footer/footer.view.php'?>
@@ -102,12 +69,11 @@ session_start();
         ?>
         const serverError = <?= json_encode($_SESSION['error']); ?>;
         <?php unset($_SESSION['error']); ?>
-        console.log("Error del servidor: ", serverError); 
         <?php else: ?>
         const serverError = null;
         <?php endif; ?>
     </script>
 
-    <script src="javascript/alumne/error-professor.js"></script>
+    <script src="javascript/professor/error-professor.js"></script>
 </body>
 </html>

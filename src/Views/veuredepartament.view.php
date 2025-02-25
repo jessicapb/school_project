@@ -1,6 +1,3 @@
-<?php
-session_start()
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,39 +22,27 @@ session_start()
         </a>
     </article>
 
-    <!-- Mostrar els alumnes -->
-    <div id="mostrar"></div>
+    <section>
+        <?php foreach($departments as $department) { ?>
+            <div id="box">
+                <div id="capsa">
+                    <div id="capsa__individual">
+                        <h1 id="capsa__titol">Nom:</h1> 
+                        <p id="capsa__desc"><?php echo $department->getName() ?></p>
+                    </div>
+                    <div id="capsa__individual">
+                        <h1 id="capsa__titol">Persones:</h1> 
+                        <p id="capsa__desc"><?php echo $department->getPeople() ?></p>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </section>
 
     <!-- Fletxa puja -->
     <?php include 'parts/fletxadalt/fletxadalt.view.php'?>
 
     <!-- Footer -->
     <?php include 'parts/footer/footer.view.php'?>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let mostrar = document.getElementById('mostrar');
-            var department = <?php echo json_encode($department); ?>;
-
-            var content = "";
-            department.forEach(function(department) {
-                content += `
-                            <div id="box">
-                                <div id="capsa">
-                                    <div id="capsa__individual">
-                                        <h1 id="capsa__titol">Nom:</h1> 
-                                        <p id="capsa__desc">${department.name}<p/>
-                                    </div>
-
-                                    <div id="capsa__individual">
-                                        <h1 id="capsa__titol">Número d'integrants:</h1> 
-                                        <p id="capsa__desc">${department.people}</p>
-                                    </div>
-                                </div>
-                            </div>`;
-            });
-            mostrar.innerHTML = content;
-        });
-    </script>
 </body>
 </html>

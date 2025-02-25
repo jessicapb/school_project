@@ -6,12 +6,12 @@ use App\School\Checks\Check;
 use App\School\Exceptions\BuildExceptions;
 
 class Subject{
-    protected int $id;
+    protected ?int $id = null;
     protected string $name;
     protected string $description;
-    protected int $course_id;
+    protected ?int $course_id = null;
 
-    public function __construct(string $name, string $description, int $course_id){
+    public function __construct(string $name, string $description){
         $message = "";
         $error = 0;
         if(($error = $this->setName($name)) !=0){
@@ -20,10 +20,6 @@ class Subject{
         
         if(($error = $this->setDescription($description)) !=0){
             $message .= "Bad description";
-        }
-        
-        if(($error = $this->setCourse($course)) !=0){
-            $message .= "Bad course";
         }
         
         if(strlen($message) > 0){
@@ -63,7 +59,21 @@ class Subject{
         return 0;
     }
     
-    public function getCourseId(): int{
-        return $this->course;
+    public function getId(): ?int{
+        return $this->id;
+    }
+    
+    public function setId(?int $id): int{
+        $this->id = $id;
+        return 0;
+    }
+    
+    public function getCourseId(): ?int{
+        return $this->course_id;
+    }
+
+    public function setCourseId(?int $course_id): int{
+        $this->course_id = $course_id;
+        return 0;
     }
 }

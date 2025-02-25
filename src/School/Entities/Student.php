@@ -9,16 +9,17 @@ use App\School\Checks\PatternChecker;
 use App\School\Entities\User;
 
 class Student extends User{
+    protected ?int $id = null;
     protected string $dni;
-    protected string $enrollment;
-    
-    public function __construct(string $name, string $surname, string $password, string $phonenumber, string $email, int $ident,
-                                string $course, string $subject, string $dni, string $enrollment) {
+    protected \DateTime $enrollment;
+    protected int $user_id;
+
+    public function __construct(string $name, string $surname, string $password, string $phonenumber, string $email, int $ident, string $dni, string $enrollment) {
         $message = "";
         $error = 0;
         
         try{
-            parent::__construct($name, $surname, $password, $phonenumber, $email, $ident, $course, $subject);
+            parent::__construct($name, $surname, $password, $phonenumber, $email, $ident);
         } catch (BuildExceptions $ex) {
             $message .= $ex->getMessage();
         }
@@ -30,13 +31,21 @@ class Student extends User{
         if (($error = $this->setDni($dni)) != 0){
             $message .= "Bad DNI";
         }
-        ;
         
         if (strlen($message) > 0) {
             throw new BuildExceptions("No es pot crear " . $message);
         }
     }
-
+    
+    public function getId(): ?int{
+        return $this->id;
+    }
+    
+    public function setId(?int $id): int{
+        $this->id = $id;
+        return 0;
+    }
+    
     public function getDni(): string {
         return $this->dni;
     }
@@ -58,22 +67,24 @@ class Student extends User{
     }
     
     public function getEnrollment():string {
-        return $this->enrollment;
+        return $this->enrollment->format('Y-m-d');
     }
     
     public function setEnrollment(string $enrollment): int {
-        if(Check::isNull($enrollment)){
-            return -1;
+        try{
+            $this->enrollment = PatternChecker::checkDate($enrollment);
+        }catch (DateException){
+            return -6; 
         }
-        
-        if(Check::minLenght($enrollment, 1)){
-            return -2;
-        }
-        
-        if(PatternChecker::checkYear($enrollment) == false){
-            return -9;
-        }
-        $this->enrollment = $enrollment;
+        return 0;
+    }
+
+    public function getUser_id(): int {
+        return $this->user_id;
+    }
+
+    public function setUser_id($user_id):int{
+        $this->user_id = $user_id;
         return 0;
     }
 }

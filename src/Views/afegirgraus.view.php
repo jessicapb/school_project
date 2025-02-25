@@ -62,6 +62,7 @@
             const serverError = null;
         <?php
         }
+        
         ?>
     </script>
 

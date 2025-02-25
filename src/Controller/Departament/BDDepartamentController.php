@@ -5,35 +5,42 @@ use App\School\Entities\Department;
 use App\Infrastructure\Persistence\DepartamentRepository;
 use App\School\Exceptions\BuildExceptions;
 use App\School\Exceptions\ServicesExceptions;
+use App\School\Services\DepartamentServices;
 
 class BDDepartamentController {
     private \PDO $db;
+    private DepartamentServices $DepartmentService;
+    private DepartamentRepository $DepartamentRepository;
 
     public function __construct(\PDO $db) {
         $this->db = $db;
+
+        $this->DepartamentRepository = new DepartamentRepository($db);
+        $this->DepartmentService = new DepartamentServices($db, $this->DepartamentRepository);
     }
 
     public function savedepartment() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (empty($_POST['people']) or empty($_POST['name'])) {
+            if (empty($_POST['name']) 
+            or empty($_POST['people'])) {
                 $_SESSION['error'] = "Camps obligatoris.";
                 header('Location: /indexdepartament');
                 exit;
             }
-            $people = $_POST['people'];
+            
             $name = $_POST['name'];
+            $people = $_POST['people'];
+            
             try {
-                $departamentRepository = new DepartamentRepository($this->db);
-                if ($departamentRepository->exists($name)) {
+                $department = new Department($name, $people);
+                if($this->DepartmentService->exists($name)){
                     session_start();
                     $_SESSION['error'] = "El departament amb el $name ja existeix.";
                     header('Location: /indexdepartament');
                     exit;
                 }
-                $department = new Department($people,$name); 
-                $departamentRepository->save($department);
+                $this->DepartmentService->save($department);
                 header('Location: /veuredepartament');
-                exit;
             } catch (BuildExceptions $e) {
                 session_start();
                 $_SESSION['error'] =  $e->getMessage();
@@ -41,28 +48,5 @@ class BDDepartamentController {
                 exit;
             }
         }
-    }
-    
-    public function getDepartment() {
-        session_start();
-        $sql = "SELECT name, people FROM department";
-        $stmt = $this->db->query($sql);
-        $department = [];
-        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        if ($result) {
-            foreach ($result as $row) {
-                    $department[] = [
-                        'name' => $row['name'],
-                        'people' => $row['people']
-                    ];
-                }
-        }
-        $_SESSION['department'] = $department;
-        return $department;
-    }
-    
-    public function mostrarVista() {
-        $department = $this->getDepartment();
-        echo view('veuredepartament', ['department' => $department]);
     }
 }

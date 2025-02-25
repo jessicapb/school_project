@@ -30,14 +30,47 @@ class DepartamentRepository implements IDepartmentRepository{
 
     function save(Department $department) {
         try {
-            $sql = $this->db->prepare("INSERT INTO department(name, people) VALUES(:name, :people)");
+            $sql = $this->db->prepare("INSERT INTO department(name, people, id) VALUES(:name, :people, :id)");
             $sql->execute([
                 'name' => $department->getName(),
-                'people' => $department->getPeople()
+                'people' => $department->getPeople(),
+                'id' => $department->getId()
             ]);
         } catch (\PDOException $e) {
             throw new BuildExceptions("Error en guardar el departament: " . $e->getMessage());
         }
+    }
+
+    function findById(string $id): Department {
+        try {
+            $sql = $this->db->prepare("SELECT * FROM department WHERE id=:id");
+            $sql->execute(['id' => $id]);
+            
+            $fila = $sql->fetch(\PDO::FETCH_ASSOC);
+            
+            if ($fila) {
+                $department = new Department($fila['name'], $fila['people']);
+                $department->setId($fila['id']);
+                return $department;
+            }
+            
+        } catch (\PDOException $e) {
+            throw new BuildExceptions("Error al recuperar el curso: " . $e->getMessage());
+        }
+    }
+    
+
+    function show(){
+        $alldepartment = [];
+        $sql = $this->db->prepare("SELECT * FROM department");
+
+        $sql->execute();
+        while($fila = $sql->fetch(\PDO::FETCH_ASSOC)){
+            $department = new Department($fila['name'], $fila['people']);
+            $department->setId($fila['id']);
+            $alldepartment[] = $department;
+        }
+        return $alldepartment;
     }
 
     function findByName($name): Department {
