@@ -18,8 +18,11 @@
 --
 -- Table structure for table `course`
 --
+
+--
+-- Create table
+--
 CREATE DATABASE `a3projecte`;
-use a3projecte;
 
 DROP TABLE IF EXISTS `course`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -28,10 +31,11 @@ CREATE TABLE `course` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `description` varchar(100) NOT NULL,
-  `subject` varchar(100) NOT NULL,
-  `degree` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `degree_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `course_degrees_FK` (`degree_id`),
+  CONSTRAINT `course_degrees_FK` FOREIGN KEY (`degree_id`) REFERENCES `degrees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +44,10 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
+INSERT INTO `course` VALUES
+(14,'1SMIX','primer any sistemes.',NULL),
+(15,'2SMIX','segon any de sistemes',12),
+(16,'2DAW','primer any programació.',NULL);
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +63,7 @@ CREATE TABLE `degrees` (
   `name` varchar(100) NOT NULL,
   `duration_years` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,10 +73,8 @@ CREATE TABLE `degrees` (
 LOCK TABLES `degrees` WRITE;
 /*!40000 ALTER TABLE `degrees` DISABLE KEYS */;
 INSERT INTO `degrees` VALUES
-(1,'SMIX',2),
-(2,'DAW',2),
-(3,'CAI',1),
-(4,'EDI',2);
+(6,'DAW',2),
+(12,'SMIX',2);
 /*!40000 ALTER TABLE `degrees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +90,7 @@ CREATE TABLE `department` (
   `name` varchar(100) NOT NULL,
   `people` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,12 +100,41 @@ CREATE TABLE `department` (
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
 INSERT INTO `department` VALUES
-(1,'Informàtica','4'),
-(5,'Direcció','1'),
-(7,'SMIX2','6'),
-(8,'LLLLLLLL','-4'),
-(9,'Smix56','4');
+(10,'Informatica','5'),
+(11,'CAI','5');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `enrollments`
+--
+
+DROP TABLE IF EXISTS `enrollments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `enrollments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` int(11) DEFAULT NULL,
+  `course_id` int(11) DEFAULT NULL,
+  `enrollment` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `enrollments_students_FK` (`student_id`),
+  KEY `enrollments_course_FK` (`course_id`),
+  CONSTRAINT `enrollments_course_FK` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `enrollments_students_FK` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `enrollments`
+--
+
+LOCK TABLES `enrollments` WRITE;
+/*!40000 ALTER TABLE `enrollments` DISABLE KEYS */;
+INSERT INTO `enrollments` VALUES
+(17,17,16,'2025-02-25'),
+(18,20,14,'2025-02-25');
+/*!40000 ALTER TABLE `enrollments` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -115,7 +150,7 @@ CREATE TABLE `examens` (
   `descripcio` varchar(100) NOT NULL,
   `dia` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +168,8 @@ INSERT INTO `examens` VALUES
 (14,'M07','entrega a3pojecte','2025-01-24'),
 (15,'M08','entrega A4','2025-01-24'),
 (17,'M07','examen oop','2025-01-30'),
-(20,'M05','diagrama','2025-01-11');
+(20,'M05','diagrama','2025-01-11'),
+(27,'m12','presentació projecte a3pojecte.','2025-02-26');
 /*!40000 ALTER TABLE `examens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +188,7 @@ CREATE TABLE `students` (
   PRIMARY KEY (`id`),
   KEY `students_users_FK_1` (`user_id`),
   CONSTRAINT `students_users_FK_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,6 +197,12 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
+INSERT INTO `students` VALUES
+(15,'12345678A','2025-02-23',17),
+(16,'23456789C','2025-02-23',18),
+(17,'56789056A','2025-02-23',19),
+(19,'01345678A','2025-02-24',24),
+(20,'34567898A','2025-02-25',25);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +221,7 @@ CREATE TABLE `subjects` (
   PRIMARY KEY (`id`),
   KEY `subjects_course_FK` (`course_id`),
   CONSTRAINT `subjects_course_FK` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,9 +231,43 @@ CREATE TABLE `subjects` (
 LOCK TABLES `subjects` WRITE;
 /*!40000 ALTER TABLE `subjects` DISABLE KEYS */;
 INSERT INTO `subjects` VALUES
-(2,'M08','git i github.',NULL),
-(3,'M07','php',NULL);
+(7,'m06','ciberseguretat',15),
+(8,'m05','sistemes',14),
+(10,'m07','php\r\n',15);
 /*!40000 ALTER TABLE `subjects` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `teacher`
+--
+
+DROP TABLE IF EXISTS `teacher`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `teacher` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `surname` varchar(100) NOT NULL,
+  `dni` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `department_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `teacher_department_FK` (`department_id`),
+  CONSTRAINT `teacher_department_FK` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `teacher`
+--
+
+LOCK TABLES `teacher` WRITE;
+/*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
+INSERT INTO `teacher` VALUES
+(1,'Toni','Jimenez','12345678J','toni.jimenez@gmail.com',10),
+(2,'Jose','Messeguer','23456789J','jose.messeguer@gmail.com',10),
+(3,'Jordi','Almirall','45678987J','jordialmirall@gmail.com',10);
+/*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -210,7 +286,7 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `ident` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,6 +295,13 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES
+(17,'Jessica','Prats','Joquese2025','34 678 90 09 09','jessica.nuria@gmail.com','1234567890'),
+(18,'Carles ','Meca','CarlesMeca2025','34 678 90 12 56','carlesmeca.nuria@gmail.com','3456789098'),
+(19,'Abraham','Vargas','AbrahamVargas2025','34 678 90 12 56','abrahamvargas.nuria@gmail.com','4567890987'),
+(23,'Proba12','m07','Probam07','34 678 90 09 09','proba@gmail.com','1234567890'),
+(24,'Proba','m07','proba2025','34 678 90 09 09','proba@gmail.com','1234567890'),
+(25,'Proba13','proba13','Proba2025#','34 678 90 09 09','proba13@gmail.com','1234567890');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,4 +318,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-02-23 11:29:36
+-- Dump completed on 2025-02-26 16:05:31
